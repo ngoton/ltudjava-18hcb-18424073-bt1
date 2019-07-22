@@ -19,8 +19,6 @@ public class LoginForm extends JPanel {
 
     private void initComponents() {
         panel = new JPanel();
-        GroupLayout layout = new GroupLayout(panel);
-        panel.setLayout(layout);
 
         titleLabel = new JLabel("ĐĂNG NHẬP");
         titleLabel.setFont(new Font("Arial", 1, 24));
@@ -38,6 +36,15 @@ public class LoginForm extends JPanel {
 
         loginButton = new JButton("Đăng nhập");
         cancelButton = new JButton("Hủy");
+
+        GroupLayout layout = new GroupLayout(panel);
+        settingLayout(layout);
+
+        add(panel);
+    }
+
+    private void settingLayout(GroupLayout layout) {
+        panel.setLayout(layout);
 
         layout.setHorizontalGroup(
                 layout.createParallelGroup(GroupLayout.Alignment.LEADING)
@@ -90,7 +97,5 @@ public class LoginForm extends JPanel {
                                 .addGap(89, 89, 89)
                         )
         );
-
-        add(panel);
     }
 }

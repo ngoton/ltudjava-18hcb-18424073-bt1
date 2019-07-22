@@ -22,7 +22,12 @@ public class MainForm extends JFrame {
     }
 
     private void addComponentsToPane(Container contentPane) {
+        CardLayout card = new CardLayout();
+        JPanel mainPanel = new JPanel();
         LoginForm loginForm = new LoginForm();
-        contentPane.add(loginForm);
+        mainPanel.add(loginForm, "login");
+        mainPanel.setLayout(card);
+        card.show(mainPanel, "login");
+        contentPane.add(mainPanel);
     }
 }
