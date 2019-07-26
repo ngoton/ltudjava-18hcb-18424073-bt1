@@ -1,4 +1,7 @@
 package com.sims.service;
 
-public class UserService {
+import com.sims.model.User;
+
+public interface UserService {
+    User login(String username, String password);
 }
