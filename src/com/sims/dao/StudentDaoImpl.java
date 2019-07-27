@@ -4,6 +4,7 @@ import com.sims.model.Classes;
 import com.sims.model.Student;
 
 import java.io.File;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -39,5 +40,22 @@ public class StudentDaoImpl implements StudentDao {
             System.out.println("Got an exception!");
         }
         return list;
+    }
+
+    @Override
+    public boolean update(List<Student> students){
+        File file = new File(getClass().getResource(studentFile).getFile());
+        try(PrintWriter pw = new PrintWriter(file)) {
+            for (Student s : students){
+                pw.write(s.toString());
+            }
+            pw.flush();
+            pw.close();
+            return true;
+        }catch (Exception e){
+            System.out.println("Got an exception!");
+        }
+
+        return false;
     }
 }

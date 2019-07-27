@@ -12,8 +12,14 @@ public class StudentServiceImpl implements StudentService {
     public StudentServiceImpl(){
         this.studentDao = new StudentDaoImpl();
     }
+
     @Override
     public List<Student> getList(){
         return studentDao.getList();
+    }
+
+    @Override
+    public boolean update(List<Student> students){
+        return studentDao.update(students);
     }
 }

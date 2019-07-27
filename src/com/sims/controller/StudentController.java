@@ -27,4 +27,12 @@ public class StudentController {
     public List<Classes> getClassList(){
         return classesService.getList();
     }
+
+    public String update(List<Student> students){
+        String result = "Lưu thất bại!";
+        if (studentService.update(students)){
+            result = "Lưu thành công!";
+        }
+        return result;
+    }
 }

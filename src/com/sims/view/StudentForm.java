@@ -12,9 +12,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+import java.awt.event.*;
 import java.util.List;
 
 public class StudentForm extends JPanel {
@@ -46,6 +44,7 @@ public class StudentForm extends JPanel {
     private JRadioButton femaleButton;
 
     private TableRowSorter<TableModel> rowSorter;
+    private Student selectedStudent;
     
     public StudentForm(){
         initComponents();
@@ -100,9 +99,12 @@ public class StudentForm extends JPanel {
                     int selectedRowIndex = studentTable.getSelectedRow();
                     selectedRowIndex = studentTable.convertRowIndexToModel(selectedRowIndex);
 
+                    selectedStudent = list.get(selectedRowIndex);
+
                     codeField.setText(model.getValueAt(selectedRowIndex, 1).toString());
                     nameField.setText(model.getValueAt(selectedRowIndex, 2).toString());
                     idField.setText(model.getValueAt(selectedRowIndex, 4).toString());
+                    classField.setSelectedItem(model.getValueAt(selectedRowIndex, 5).toString());
 
                     if (model.getValueAt(selectedRowIndex, 3).toString().equals("Nam")){
                         maleButton.setSelected(true);
@@ -145,6 +147,16 @@ public class StudentForm extends JPanel {
         });
     }
 
+    private void filter() {
+        String text = classBox.getSelectedItem().toString();
+        if (text.equals("Tất cả")){
+            rowSorter.setRowFilter(null);
+        }
+        else{
+            rowSorter.setRowFilter(RowFilter.regexFilter("(?i)" + text));
+        }
+    }
+
     private void initComponents() {
         panel = new JPanel();
 
@@ -161,6 +173,7 @@ public class StudentForm extends JPanel {
 
         addButton = new JButton("Lưu lại");
         resetButton = new JButton("Nhập lại");
+        resetButton.addActionListener(e->clearAll());
 
         codeField = new JTextField();
         nameField = new JTextField();
@@ -180,6 +193,7 @@ public class StudentForm extends JPanel {
         classBox.setModel(new DefaultComboBoxModel(
             new Object[]{"Tất cả"}
         ));
+        classBox.addActionListener(e->filter());
 
         searchField = new JTextField();
         searchField.getDocument().addDocumentListener(search());
@@ -208,6 +222,14 @@ public class StudentForm extends JPanel {
 
         add(panel);
     }
+
+    private void clearAll() {
+        codeField.setText("");
+        nameField.setText("");
+        idField.setText("");
+        selectedStudent = null;
+    }
+
 
     private void settingLayout(GroupLayout layout) {
         panel.setLayout(layout);
