@@ -6,5 +6,6 @@ import java.util.List;
 
 public interface StudentDao {
     List<Student> getList();
-    boolean update(List<Student> students);
+    boolean save(List<Student> students);
+    boolean deleteAll();
 }

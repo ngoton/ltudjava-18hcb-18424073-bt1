@@ -11,4 +11,19 @@ public class ClickListener {
             System.exit(0);
         }
     }
+
+    public boolean deleteClick() {
+        String ObjButtons[] = {"Đồng ý","Hủy"};
+        int PromptResult = JOptionPane.showOptionDialog(null,"Bạn có chắc chắn muốn thực hiện không?","THÔNG BÁO",JOptionPane.DEFAULT_OPTION,JOptionPane.WARNING_MESSAGE,null,ObjButtons,ObjButtons[1]);
+        if(PromptResult==JOptionPane.YES_OPTION)
+        {
+            return true;
+        }
+        return false;
+    }
+
+    public void showMessage(String message){
+        JOptionPane.showMessageDialog(null, message, "THÔNG BÁO",
+                JOptionPane.WARNING_MESSAGE);
+    }
 }

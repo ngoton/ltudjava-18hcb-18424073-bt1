@@ -3,6 +3,7 @@ package com.sims.view;
 import com.sims.controller.StudentController;
 import com.sims.model.Classes;
 import com.sims.model.Student;
+import com.sims.util.ClickListener;
 
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
@@ -13,11 +14,13 @@ import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
 public class StudentForm extends JPanel {
     private StudentController controller;
+    private ClickListener clickListener;
     private List<Student> list;
     DefaultTableModel model;
     private List<Classes> classList;
@@ -25,6 +28,8 @@ public class StudentForm extends JPanel {
     DefaultComboBoxModel classBoxModel;
     private JPanel panel;
     private JButton addButton;
+    private JButton importButton;
+    private JButton saveButton;
     private JButton resetButton;
     private JLabel titleLabel;
     private JLabel codeLabel;
@@ -43,12 +48,16 @@ public class StudentForm extends JPanel {
     private ButtonGroup genderGroup;
     private JRadioButton maleButton;
     private JRadioButton femaleButton;
+    private JButton deleteButton;
+    private JButton removeButton;
 
     private TableRowSorter<TableModel> rowSorter;
     private Student selectedStudent;
-    
-    public StudentForm(){
+    private Integer selectedRowIndex;
+
+    public StudentForm() {
         initComponents();
+        clickListener = new ClickListener();
         this.controller = new StudentController(this);
         this.list = controller.getList();
 
@@ -70,7 +79,7 @@ public class StudentForm extends JPanel {
         classBox.setModel(classBoxModel);
     }
 
-    private void showDataTable(){
+    private void showDataTable() {
         model.setColumnIdentifiers(new Object[]{
                 "STT", "MSSV", "Họ tên", "Giới tính", "CMND", "Lớp"
         });
@@ -85,7 +94,7 @@ public class StudentForm extends JPanel {
         studentTable.setRowSorter(rowSorter);
 
         DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
-        centerRenderer.setHorizontalAlignment( JLabel.CENTER );
+        centerRenderer.setHorizontalAlignment(JLabel.CENTER);
         studentTable.getColumnModel().getColumn(0).setCellRenderer(centerRenderer);
         studentTable.getColumnModel().getColumn(0).setPreferredWidth(20);
         studentTable.addMouseListener(getDataRow());
@@ -97,7 +106,7 @@ public class StudentForm extends JPanel {
             public void mouseClicked(MouseEvent e) {
                 if (e.getClickCount() == 1 && studentTable.getSelectedRow() != -1) {
                     DefaultTableModel model = (DefaultTableModel) studentTable.getModel();
-                    int selectedRowIndex = studentTable.getSelectedRow();
+                    selectedRowIndex = studentTable.getSelectedRow();
                     selectedRowIndex = studentTable.convertRowIndexToModel(selectedRowIndex);
 
                     selectedStudent = list.get(selectedRowIndex);
@@ -107,10 +116,9 @@ public class StudentForm extends JPanel {
                     idField.setText(model.getValueAt(selectedRowIndex, 4).toString());
                     classField.setSelectedItem(model.getValueAt(selectedRowIndex, 5).toString());
 
-                    if (model.getValueAt(selectedRowIndex, 3).toString().equals("Nam")){
+                    if (model.getValueAt(selectedRowIndex, 3).toString().equals("Nam")) {
                         maleButton.setSelected(true);
-                    }
-                    else {
+                    } else {
                         femaleButton.setSelected(true);
                     }
 
@@ -120,7 +128,7 @@ public class StudentForm extends JPanel {
         });
     }
 
-    private DocumentListener search(){
+    private DocumentListener search() {
         return (new DocumentListener() {
             @Override
             public void insertUpdate(DocumentEvent e) {
@@ -150,12 +158,164 @@ public class StudentForm extends JPanel {
 
     private void filter() {
         String text = classBox.getSelectedItem().toString();
-        if (text.equals("Tất cả")){
+        if (text.equals("Tất cả")) {
             rowSorter.setRowFilter(null);
-        }
-        else{
+        } else {
             rowSorter.setRowFilter(RowFilter.regexFilter("(?i)" + text));
         }
+    }
+
+    private void save() {
+        String rs = "Lưu thất bại!";
+        String code = codeField.getText().trim();
+        String name = nameField.getText().trim();
+        String idNumber = idField.getText().trim();
+        String classSelected = classField.getSelectedItem().toString();
+        String gender = "Nam";
+        if (femaleButton.isSelected()) {
+            gender = "Nữ";
+        }
+
+        if (code.isEmpty()) {
+            rs = "Vui lòng nhập vào MSSV!";
+            codeField.requestFocus();
+        } else if (name.isEmpty()) {
+            rs = "Vui lòng nhập vào Họ tên!";
+            nameField.requestFocus();
+        } else {
+            boolean checkId = true;
+            List<Student> newList = new ArrayList<>();
+            Classes classes = new Classes();
+            for (Classes c : classList) {
+                if (c.getName().equals(classSelected)) {
+                    classes = c;
+                    break;
+                }
+            }
+            if (selectedStudent != null) {
+                selectedStudent.setCode(code);
+                selectedStudent.setName(name);
+                selectedStudent.setGender(gender);
+                selectedStudent.setIdNumber(idNumber);
+                selectedStudent.setStudentClass(classes);
+
+                for (Student s : list) {
+                    if (selectedStudent.getId().equals(s.getId())) {
+                        newList.add(selectedStudent);
+                    } else {
+                        if (code.equals(s.getCode())) {
+                            checkId = false;
+                            break;
+                        }
+                        newList.add(s);
+                    }
+                }
+            } else {
+                for (Student s : list) {
+                    if (code.equals(s.getCode())) {
+                        checkId = false;
+                        break;
+                    }
+                }
+                if (checkId == true) {
+                    newList = list;
+                    Integer lastId = 0;
+                    if (list.size() > 0) {
+                        lastId = list.get(list.size() - 1).getId();
+                    }
+                    Student newStudent = new Student();
+                    newStudent.setId(++lastId);
+                    newStudent.setCode(code);
+                    newStudent.setName(name);
+                    newStudent.setGender(gender);
+                    newStudent.setIdNumber(idNumber);
+                    newStudent.setStudentClass(classes);
+                    newList.add(newStudent);
+                }
+
+            }
+
+            if (checkId == true) {
+                boolean response = controller.save(newList);
+                if (response == true) {
+                    if (selectedStudent != null) {
+                        model.setValueAt(code, selectedRowIndex, 1);
+                        model.setValueAt(name, selectedRowIndex, 2);
+                        model.setValueAt(gender, selectedRowIndex, 3);
+                        model.setValueAt(idNumber, selectedRowIndex, 4);
+                        model.setValueAt(classSelected, selectedRowIndex, 5);
+                    } else {
+                        Integer i = 0;
+                        if (model.getRowCount() > 0) {
+                            i = Integer.parseInt(model.getValueAt(model.getRowCount() - 1, 0).toString());
+                        }
+                        model.addRow(new Object[]{
+                                ++i, code, name, gender, idNumber, classSelected
+                        });
+                    }
+
+                    model.fireTableDataChanged();
+                    studentTable.repaint();
+                    rs = "Lưu thành công!";
+                    list = newList;
+                }
+            } else {
+                rs = "MSSV đã tồn tại!";
+                codeField.requestFocus();
+            }
+
+        }
+
+        clickListener.showMessage(rs);
+    }
+
+    private void delete() {
+        String rs = "Có lỗi xảy ra!";
+        if (clickListener.deleteClick()) {
+            List<Student> newList = new ArrayList<>();
+            if (selectedStudent != null) {
+                for (Student s : list) {
+                    if (!selectedStudent.getId().equals(s.getId())) {
+                        newList.add(s);
+                    }
+                }
+            }
+
+            boolean response = controller.save(newList);
+            if (response == true) {
+                model.removeRow(selectedRowIndex);
+                model.fireTableDataChanged();
+                studentTable.repaint();
+                rs = "Xóa thành công!";
+                list = newList;
+            }
+            clickListener.showMessage(rs);
+            this.refresh();
+        }
+    }
+
+    private void clearAll() {
+        if (clickListener.deleteClick()) {
+            String rs = "Có lỗi xảy ra!";
+            boolean response = controller.deleteAll();
+            if (response == true) {
+                list.removeAll(list);
+                model.setRowCount(0);
+                rs = "Đã xóa thành công!";
+            }
+            clickListener.showMessage(rs);
+            this.refresh();
+        }
+    }
+
+    private void refresh() {
+        codeField.setText("");
+        nameField.setText("");
+        idField.setText("");
+        selectedStudent = null;
+        selectedRowIndex = null;
+        studentTable.getSelectionModel().clearSelection();
+        codeField.requestFocus();
     }
 
     private void initComponents() {
@@ -166,17 +326,23 @@ public class StudentForm extends JPanel {
         titleLabel.setForeground(new Color(26316));
         titleLabel.setHorizontalAlignment(JLabel.CENTER);
 
+        addButton = new JButton("+ Thêm mới");
+        addButton.addActionListener(e -> refresh());
+
+        importButton = new JButton("Nhập từ file ...");
+        importButton.addActionListener(e -> importFile());
+
         codeLabel = new JLabel("MSSV: ");
         nameLabel = new JLabel("Họ tên: ");
         genderLabel = new JLabel("Giới tính: ");
         idLabel = new JLabel("CMND: ");
         classLabel = new JLabel("Lớp: ");
 
-        addButton = new JButton("Lưu lại");
-        addButton.addActionListener(e->updateData());
+        saveButton = new JButton("Lưu lại");
+        saveButton.addActionListener(e -> save());
 
         resetButton = new JButton("Nhập lại");
-        resetButton.addActionListener(e->clearAll());
+        resetButton.addActionListener(e -> refresh());
 
         codeField = new JTextField();
         nameField = new JTextField();
@@ -194,9 +360,9 @@ public class StudentForm extends JPanel {
 
         classBox = new JComboBox();
         classBox.setModel(new DefaultComboBoxModel(
-            new Object[]{"Tất cả"}
+                new Object[]{"Tất cả"}
         ));
-        classBox.addActionListener(e->filter());
+        classBox.addActionListener(e -> filter());
 
         searchField = new JTextField();
         searchField.getDocument().addDocumentListener(search());
@@ -205,13 +371,13 @@ public class StudentForm extends JPanel {
         studentTable = new JTable();
         studentTable.getTableHeader().setFont(new Font("Arial", Font.BOLD, 14));
         studentTable.setModel(new DefaultTableModel(
-            new Object [][] {
+                new Object[][]{
 
-            },
-            new String [] {
-                    "STT", "MSSV", "Họ tên", "Giới tính", "CMND", "Lớp"
-            }
-        ){
+                },
+                new String[]{
+                        "STT", "MSSV", "Họ tên", "Giới tính", "CMND", "Lớp"
+                }
+        ) {
             @Override
             public boolean isCellEditable(int rowIndex, int colIndex) {
                 return false;
@@ -220,69 +386,44 @@ public class StudentForm extends JPanel {
 
         jScrollPane1.setViewportView(studentTable);
 
+        deleteButton = new JButton("Xóa");
+        deleteButton.addActionListener(e -> delete());
+
+        removeButton = new JButton("Xóa tất cả");
+        removeButton.addActionListener(e -> clearAll());
+
         GroupLayout layout = new GroupLayout(panel);
         settingLayout(layout);
 
         add(panel);
     }
 
-    private void updateData() {
-        String rs;
-        String code = codeField.getText().trim();
-        String name = nameField.getText().trim();
-        String idNumber = idField.getText().trim();
-        String classSelected = classField.getSelectedItem().toString();
-        String gender = "Nam";
-        if (femaleButton.isSelected()){
-            gender = "Nữ";
-        }
-
-        if (code.isEmpty()){
-            rs = "Vui lòng nhập vào MSSV!";
-        }
-        else if (name.isEmpty()){
-            rs = "Vui lòng nhập vào Họ tên!";
-        }
-        else {
-            if (selectedStudent != null){
-                selectedStudent.setCode(code);
-                selectedStudent.setName(name);
-                selectedStudent.setGender(gender);
-                selectedStudent.setIdNumber(idNumber);
-                Classes classes = new Classes();
-                for (Classes c : classList){
-                    if (c.getName().equals(classSelected)){
-                        classes = c;
-                        break;
+    private void importFile() {
+        JFileChooser fileChooser = new JFileChooser();
+        int result = fileChooser.showOpenDialog(this);
+        if (result == JFileChooser.APPROVE_OPTION) {
+            String rs;
+            if (fileChooser.getSelectedFile() == null) {
+                rs = "Vui lòng chọn 1 file!";
+            } else {
+                String fileName = fileChooser.getSelectedFile().getAbsolutePath();
+                File ff = new File(fileName);
+                String ffname = ff.getName();
+                int aa = ffname.indexOf(".");
+                String fftype = ffname.substring(aa + 1);
+                if (fftype.equals("csv")) {
+                    if (ff.length() > 20000000) {
+                        rs = "Kích cỡ file không được vượt quá 20Mb!";
+                    } else {
+                        rs = "Cập nhật thành công!";
                     }
-                }
-                selectedStudent.setStudentClass(classes);
-            }
-
-            List<Student> newList = new ArrayList<>();
-            for (Student s : list){
-                if (selectedStudent.getId().equals(s.getId())){
-                    newList.add(s);
-                }
-                else {
-                    newList.add(s);
+                } else {
+                    rs = "Vui lòng chọn file CSV!";
                 }
             }
-
-            rs = controller.update(newList);
+            clickListener.showMessage(rs);
         }
-
-        JOptionPane.showMessageDialog(this, rs, "THÔNG BÁO",
-                JOptionPane.WARNING_MESSAGE);
     }
-
-    private void clearAll() {
-        codeField.setText("");
-        nameField.setText("");
-        idField.setText("");
-        selectedStudent = null;
-    }
-
 
     private void settingLayout(GroupLayout layout) {
         panel.setLayout(layout);
@@ -292,13 +433,12 @@ public class StudentForm extends JPanel {
                         .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                                         .addGroup(layout.createSequentialGroup()
-                                                .addGap(0, 0, Short.MAX_VALUE)
+                                                .addGap(18, 18, 18)
                                                 .addComponent(addButton)
-                                                .addGap(45, 45, 45)
-                                                .addComponent(resetButton, GroupLayout.PREFERRED_SIZE, 90, GroupLayout.PREFERRED_SIZE)
-                                                .addGap(42, 42, 42))
+                                                .addComponent(importButton)
+                                        )
                                         .addGroup(layout.createSequentialGroup()
-                                                .addGap(44, 44, 44)
+                                                .addGap(18, 18, 18)
                                                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                                                         .addComponent(codeLabel)
                                                         .addComponent(nameLabel)
@@ -314,23 +454,28 @@ public class StudentForm extends JPanel {
                                                                 .addComponent(femaleButton)
                                                         )
                                                         .addComponent(idField)
-                                                        .addComponent(classField,GroupLayout.PREFERRED_SIZE, 178, GroupLayout.PREFERRED_SIZE))
+                                                        .addComponent(classField, GroupLayout.PREFERRED_SIZE, 178, GroupLayout.PREFERRED_SIZE))
                                                 .addGap(27, 27, 27))
                                         .addGroup(layout.createSequentialGroup()
                                                 .addGap(0, 0, Short.MAX_VALUE)
-                                                .addComponent(addButton)
+                                                .addComponent(saveButton)
                                                 .addGap(45, 45, 45)
                                                 .addComponent(resetButton, GroupLayout.PREFERRED_SIZE, 90, GroupLayout.PREFERRED_SIZE)
-                                                .addGap(42, 42, 42))
+                                                .addGap(55, 55, 55))
                                 )
                                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                                         .addComponent(titleLabel)
                                         .addGroup(layout.createSequentialGroup()
-                                            .addComponent(classBox, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
-                                            .addGap(300, 300, 300)
-                                            .addComponent(searchField)
+                                                .addComponent(classBox, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
+                                                .addGap(300, 300, 300)
+                                                .addComponent(searchField)
                                         )
-                                        .addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 671, GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 700, GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addComponent(deleteButton)
+                                                .addComponent(removeButton)
+                                        )
+                                )
                                 .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -339,15 +484,13 @@ public class StudentForm extends JPanel {
                                 .addContainerGap()
                                 .addComponent(titleLabel)
                                 .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                                        .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                                .addComponent(classBox)
-                                                .addComponent(searchField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 
-                                        )
-                                )
                                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                                         .addGroup(layout.createSequentialGroup()
+                                                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                                        .addComponent(addButton)
+                                                        .addComponent(importButton))
+                                                .addGap(18, 18, 18)
                                                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                                                         .addComponent(codeLabel)
                                                         .addComponent(codeField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
@@ -371,10 +514,22 @@ public class StudentForm extends JPanel {
                                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                                                         .addComponent(resetButton)
-                                                        .addComponent(addButton))
+                                                        .addComponent(saveButton))
                                                 .addGap(73, 73, 73))
                                         .addGroup(layout.createSequentialGroup()
+                                                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                                        .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                                                .addComponent(classBox)
+                                                                .addComponent(searchField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+
+                                                        )
+                                                )
                                                 .addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 390, GroupLayout.PREFERRED_SIZE)
+                                                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                                        .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                                                .addComponent(deleteButton)
+                                                                .addComponent(removeButton))
+                                                )
                                                 .addContainerGap(54, Short.MAX_VALUE))))
         );
 
