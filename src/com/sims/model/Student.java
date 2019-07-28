@@ -58,7 +58,6 @@ public class Student implements Serializable {
         this.studentClass = studentClass;
     }
 
-    @Override
     public String toString() {
         return this.getId() + "|" + this.getCode() + "|" + this.getName() + "|" + this.getGender() + "|" + this.getIdNumber() + "|" + this.getStudentClass().getId();
     }

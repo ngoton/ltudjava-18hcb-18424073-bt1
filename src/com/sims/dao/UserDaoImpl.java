@@ -3,6 +3,7 @@ package com.sims.dao;
 import com.sims.model.User;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -43,7 +44,7 @@ public class UserDaoImpl implements UserDao {
 
                 list.add(user);
             }
-        } catch (Exception e) {
+        } catch (IOException e) {
             System.out.println("Got an exception!");
         }
         return list;

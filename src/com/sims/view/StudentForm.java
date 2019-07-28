@@ -13,6 +13,7 @@ import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class StudentForm extends JPanel {
@@ -172,6 +173,8 @@ public class StudentForm extends JPanel {
         classLabel = new JLabel("Lớp: ");
 
         addButton = new JButton("Lưu lại");
+        addButton.addActionListener(e->updateData());
+
         resetButton = new JButton("Nhập lại");
         resetButton.addActionListener(e->clearAll());
 
@@ -221,6 +224,56 @@ public class StudentForm extends JPanel {
         settingLayout(layout);
 
         add(panel);
+    }
+
+    private void updateData() {
+        String rs;
+        String code = codeField.getText().trim();
+        String name = nameField.getText().trim();
+        String idNumber = idField.getText().trim();
+        String classSelected = classField.getSelectedItem().toString();
+        String gender = "Nam";
+        if (femaleButton.isSelected()){
+            gender = "Nữ";
+        }
+
+        if (code.isEmpty()){
+            rs = "Vui lòng nhập vào MSSV!";
+        }
+        else if (name.isEmpty()){
+            rs = "Vui lòng nhập vào Họ tên!";
+        }
+        else {
+            if (selectedStudent != null){
+                selectedStudent.setCode(code);
+                selectedStudent.setName(name);
+                selectedStudent.setGender(gender);
+                selectedStudent.setIdNumber(idNumber);
+                Classes classes = new Classes();
+                for (Classes c : classList){
+                    if (c.getName().equals(classSelected)){
+                        classes = c;
+                        break;
+                    }
+                }
+                selectedStudent.setStudentClass(classes);
+            }
+
+            List<Student> newList = new ArrayList<>();
+            for (Student s : list){
+                if (selectedStudent.getId().equals(s.getId())){
+                    newList.add(s);
+                }
+                else {
+                    newList.add(s);
+                }
+            }
+
+            rs = controller.update(newList);
+        }
+
+        JOptionPane.showMessageDialog(this, rs, "THÔNG BÁO",
+                JOptionPane.WARNING_MESSAGE);
     }
 
     private void clearAll() {
