@@ -2,23 +2,28 @@ package com.sims.dao;
 
 import com.sims.model.Classes;
 import com.sims.model.Student;
+import com.sims.model.User;
 
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class StudentDaoImpl extends IOFileDao implements StudentDao {
-    private static String studentFile = "../data/student.txt";
+    private static String path = "../data/student.txt";
+    private String studentFile;
     private ClassesDao classesDao;
+    private UserDao userDao;
 
     public StudentDaoImpl(){
+        this.studentFile = getClass().getResource(path).getFile();
         this.classesDao = new ClassesDaoImpl();
+        this.userDao = new UserDaoImpl();
     }
 
     @Override
     public List<Student> getList(){
         List<Student> list = new ArrayList<>();
-        List<String[]> data = readFile(studentFile);
+        List<String[]> data = readFile(studentFile, "\\|");
         for (String[] arr : data){
             Student student = new Student();
             student.setId(Integer.parseInt(arr[0]));
@@ -28,7 +33,9 @@ public class StudentDaoImpl extends IOFileDao implements StudentDao {
             student.setIdNumber(arr[4]);
 
             Classes classes = classesDao.getClassById(Integer.parseInt(arr[5]));
-            student.setStudentClass(classes);
+            if (classes != null){
+                student.setStudentClass(classes);
+            }
 
             list.add(student);
         }
@@ -37,12 +44,137 @@ public class StudentDaoImpl extends IOFileDao implements StudentDao {
     }
 
     @Override
+    public Student getStudentById(Integer id){
+        List<Student> students = this.getList();
+        Student student = null;
+        for (Student s : students){
+            if (id.equals(s.getId())){
+                student = s;
+                break;
+            }
+        }
+        return student;
+    }
+
+    @Override
     public boolean save(List<Student> students){
-        return writeFile(students, studentFile);
+        List<User> users = userDao.getList();
+        Integer lastId = 0;
+        if (users.size() > 0) {
+            lastId = users.get(users.size() - 1).getId();
+        }
+        for (Student s : students){
+            User user = userDao.getUserByName(s);
+            if (user == null){
+                user.setId(++lastId);
+                user.setUsername(s.getCode());
+                user.setPassword(s.getCode());
+                user.setRole("USER");
+                user.setStudent(s);
+                userDao.addOne(user);
+            }
+            else {
+                if (!user.getUsername().equals(s.getCode())){
+                    user.setUsername(s.getCode());
+                    userDao.updateOne(user);
+                }
+            }
+        }
+
+        List<User> newList = new ArrayList<>();
+        users = userDao.getList();
+
+        for (User u : users) {
+            for (Student s : students) {
+                if(u.getStudent().getId().equals(s.getId()) && u.getRole().equals("USER")){
+                    newList.add(u);
+                }
+            }
+        }
+        userDao.deleteAll(newList);
+
+        return writeFile(students, studentFile, false);
     }
 
     @Override
     public boolean deleteAll(){
-        return writeFile(null, studentFile);
+        List<Student> students = this.getList();
+        List<User> newList = new ArrayList<>();
+        List<User> users = userDao.getList();
+        for (User u : users) {
+            if(u.getRole().equals("USER")){
+                newList.add(u);
+            }
+        }
+        userDao.deleteAll(newList);
+        return writeFile(null, studentFile, false);
+    }
+
+    @Override
+    public List<Student> importFile(String path){
+        List<Student> list = getList();
+        List<Student> newList = new ArrayList<>();
+        Classes classes = null;
+        List<String[]> data = readFile(path, ",");
+        int i = 0;
+        for (String[] arr : data){
+            if (i == 0){
+                String className = arr[0].trim();
+                if (!className.isEmpty()){
+                    classes = classesDao.getClassByName(className);
+                    if (classes == null){
+                        List<Classes> classesList = classesDao.getList();
+                        Integer lastId = 0;
+                        if (classesList.size() > 0) {
+                            lastId = classesList.get(classesList.size() - 1).getId();
+                        }
+                        Classes c = new Classes();
+                        c.setId(++lastId);
+                        c.setName(className);
+                        if(classesDao.addOne(c)){
+                            classes = c;
+                        }
+                        else {
+                            return list;
+                        }
+                    }
+                }
+            }
+            else if (i > 1){
+                Integer lastId = 0;
+                if (list.size() > 0) {
+                    lastId = list.get(list.size() - 1).getId();
+                }
+                Student student = new Student();
+                String code = arr[1].trim();
+
+                student.setId(++lastId);
+                student.setCode(code);
+                student.setName(arr[2].trim());
+                student.setGender(arr[3].trim());
+                student.setIdNumber(arr[4].trim());
+                student.setStudentClass(classes);
+                newList.add(student);
+                list.add(student);
+
+                List<User> userList = userDao.getList();
+                Integer lastUser = 0;
+                if (userList.size() > 0) {
+                    lastUser = userList.get(userList.size() - 1).getId();
+                }
+                User user = new User();
+                user.setId(++lastUser);
+                user.setUsername(code);
+                user.setPassword(code);
+                user.setRole("USER");
+                user.setStudent(student);
+                userDao.addOne(user);
+            }
+            i++;
+        }
+
+        writeFile(newList, studentFile, true);
+
+        return list;
     }
 }

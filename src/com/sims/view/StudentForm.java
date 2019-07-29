@@ -308,6 +308,22 @@ public class StudentForm extends JPanel {
         }
     }
 
+    private void importFile() {
+        String path = clickListener.importClick();
+        if (path != null){
+            String rs = "Có lỗi xảy ra!";
+            List<Student> response = controller.importFile(path);
+            if (response.size() > list.size()) {
+                list = response;
+                model.setRowCount(0);
+                showDataTable();
+                rs = "Cập nhật thành công!";
+            }
+            clickListener.showMessage(rs);
+            this.refresh();
+        }
+    }
+
     private void refresh() {
         codeField.setText("");
         nameField.setText("");
@@ -396,33 +412,6 @@ public class StudentForm extends JPanel {
         settingLayout(layout);
 
         add(panel);
-    }
-
-    private void importFile() {
-        JFileChooser fileChooser = new JFileChooser();
-        int result = fileChooser.showOpenDialog(this);
-        if (result == JFileChooser.APPROVE_OPTION) {
-            String rs;
-            if (fileChooser.getSelectedFile() == null) {
-                rs = "Vui lòng chọn 1 file!";
-            } else {
-                String fileName = fileChooser.getSelectedFile().getAbsolutePath();
-                File ff = new File(fileName);
-                String ffname = ff.getName();
-                int aa = ffname.indexOf(".");
-                String fftype = ffname.substring(aa + 1);
-                if (fftype.equals("csv")) {
-                    if (ff.length() > 20000000) {
-                        rs = "Kích cỡ file không được vượt quá 20Mb!";
-                    } else {
-                        rs = "Cập nhật thành công!";
-                    }
-                } else {
-                    rs = "Vui lòng chọn file CSV!";
-                }
-            }
-            clickListener.showMessage(rs);
-        }
     }
 
     private void settingLayout(GroupLayout layout) {

@@ -7,6 +7,7 @@ public class User implements Serializable {
     private String username;
     private String password;
     private String role;
+    private Student student;
 
     public Integer getId() {
         return id;
@@ -39,4 +40,17 @@ public class User implements Serializable {
     public void setRole(String role) {
         this.role = role;
     }
+
+    public Student getStudent() {
+        return student;
+    }
+
+    public void setStudent(Student student) {
+        this.student = student;
+    }
+
+    public String toString() {
+        return this.getId() + "|" + this.getUsername() + "|" + this.getPassword() + "|" + this.getRole() + "|" + this.getStudent().getId();
+    }
+
 }

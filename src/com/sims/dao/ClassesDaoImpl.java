@@ -5,12 +5,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ClassesDaoImpl extends IOFileDao implements ClassesDao {
-    private static String classFile = "../data/class.txt";
+    private static String path = "../data/class.txt";
+    private String classFile;
+
+    public ClassesDaoImpl(){
+        this.classFile = getClass().getResource(path).getFile();
+    }
 
     @Override
     public List<Classes> getList(){
         List<Classes> list = new ArrayList<>();
-        List<String[]> data = readFile(classFile);
+        List<String[]> data = readFile(classFile, "\\|");
         for (String[] arr : data){
             Classes classes = new Classes();
             classes.setId(Integer.parseInt(arr[0]));
@@ -27,8 +32,8 @@ public class ClassesDaoImpl extends IOFileDao implements ClassesDao {
         Classes cls = null;
         for (Classes c : classes){
             if (id.equals(c.getId())){
-                cls = new Classes();
                 cls = c;
+                break;
             }
         }
         return cls;
@@ -40,10 +45,17 @@ public class ClassesDaoImpl extends IOFileDao implements ClassesDao {
         Classes cls = null;
         for (Classes c : classes){
             if (name.equals(c.getName())){
-                cls = new Classes();
                 cls = c;
+                break;
             }
         }
         return cls;
+    }
+
+    @Override
+    public boolean addOne(Classes classes){
+        List<Classes> classesList = new ArrayList<>();
+        classesList.add(classes);
+        return writeFile(classesList, classFile, true);
     }
 }

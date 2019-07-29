@@ -8,4 +8,5 @@ public interface StudentService {
     List<Student> getList();
     boolean save(List<Student> students);
     boolean deleteAll();
+    List<Student> importFile(String path);
 }

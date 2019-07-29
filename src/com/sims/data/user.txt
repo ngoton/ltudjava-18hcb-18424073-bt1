@@ -1,2 +1,1 @@
-1|giaovu|giaovu|ADMIN
-2|18424073|18424073|USER
+1|giaovu|giaovu|ADMIN|0

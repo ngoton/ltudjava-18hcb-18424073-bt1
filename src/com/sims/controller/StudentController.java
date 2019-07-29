@@ -35,4 +35,8 @@ public class StudentController {
     public boolean deleteAll(){
         return studentService.deleteAll();
     }
+
+    public List<Student> importFile(String path){
+        return studentService.importFile(path);
+    }
 }

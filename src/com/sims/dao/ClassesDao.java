@@ -8,4 +8,5 @@ public interface ClassesDao {
     List<Classes> getList();
     Classes getClassById(Integer id);
     Classes getClassByName(String name);
+    boolean addOne(Classes classes);
 }

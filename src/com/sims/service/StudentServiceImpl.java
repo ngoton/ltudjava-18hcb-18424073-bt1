@@ -27,4 +27,9 @@ public class StudentServiceImpl implements StudentService {
     public boolean deleteAll(){
         return studentDao.deleteAll();
     }
+
+    @Override
+    public List<Student> importFile(String path){
+        return studentDao.importFile(path);
+    }
 }

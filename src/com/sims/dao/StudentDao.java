@@ -6,6 +6,8 @@ import java.util.List;
 
 public interface StudentDao {
     List<Student> getList();
+    Student getStudentById(Integer id);
     boolean save(List<Student> students);
     boolean deleteAll();
+    List<Student> importFile(String path);
 }
