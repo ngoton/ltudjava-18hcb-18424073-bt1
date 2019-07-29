@@ -143,10 +143,11 @@ public class MainForm extends JFrame {
 
         List<MenuBean> menuList = new ArrayList<>();
         //menuList.add(new MenuBean(calendarPanel, studentButton, "student"));
+        menuList.add(new MenuBean(changePassPanel, changePassButton, "changepass"));
         menuList.add(new MenuBean(null, loginButton, "login"));
 
         ScreenSwitchController controller = new ScreenSwitchController(this, mainPanel, toolBar);
-        //controller.setFirstPanel(studentPanel, studentButton);
+        controller.setFirstPanel(changePassPanel, changePassButton);
         controller.setEvent(menuList);
 
         contentPane.add(mainPanel);

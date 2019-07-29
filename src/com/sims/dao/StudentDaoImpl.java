@@ -59,6 +59,8 @@ public class StudentDaoImpl extends IOFileDao implements StudentDao {
     @Override
     public boolean save(List<Student> students){
         List<User> users = userDao.getList();
+        List<User> userList = new ArrayList<>();
+        userList.add(users.get(0));
         Integer lastId = 0;
         if (users.size() > 0) {
             lastId = users.get(users.size() - 1).getId();
@@ -73,7 +75,6 @@ public class StudentDaoImpl extends IOFileDao implements StudentDao {
                 user.setRole("USER");
                 user.setStudent(s);
                 userDao.addOne(user);
-                users.add(user);
             }
             else {
                 if (!user.getUsername().equals(s.getCode())){
@@ -81,11 +82,12 @@ public class StudentDaoImpl extends IOFileDao implements StudentDao {
                     userDao.updateOne(user);
                 }
             }
+            userList.add(user);
         }
 
         List<User> newList = new ArrayList<>();
 
-        for (User u : users) {
+        for (User u : userList) {
             if (u.getRole().equals("ADMIN")){
                 newList.add(u);
             }
