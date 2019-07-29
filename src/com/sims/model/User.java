@@ -50,7 +50,7 @@ public class User implements Serializable {
     }
 
     public String toString() {
-        return this.getId() + "|" + this.getUsername() + "|" + this.getPassword() + "|" + this.getRole() + "|" + this.getStudent().getId();
+        return this.getId() + "|" + this.getUsername() + "|" + this.getPassword() + "|" + this.getRole() + "|" + (this.getStudent()!=null ? this.getStudent().getId() : 0);
     }
 
 }

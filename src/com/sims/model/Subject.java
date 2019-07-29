@@ -30,4 +30,8 @@ public class Subject implements Serializable {
     public void setName(String name) {
         this.name = name;
     }
+
+    public String toString() {
+        return this.getId() + "|" + this.getCode() + "|" + this.getName();
+    }
 }

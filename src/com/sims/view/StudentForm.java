@@ -60,14 +60,20 @@ public class StudentForm extends JPanel {
         clickListener = new ClickListener();
         this.controller = new StudentController(this);
         this.list = controller.getList();
+        loadClassList();
+        this.model = (DefaultTableModel) studentTable.getModel();
+        showDataTable();
+    }
 
+    private void loadClassList(){
+        this.classField.setModel(new DefaultComboBoxModel());
+        this.classBox.setModel(new DefaultComboBoxModel(
+                new Object[]{"Tất cả"}
+        ));
         this.classList = controller.getClassList();
         this.classBoxModel = (DefaultComboBoxModel) classBox.getModel();
         this.classFieldModel = (DefaultComboBoxModel) classField.getModel();
         addToClassBox();
-
-        this.model = (DefaultTableModel) studentTable.getModel();
-        showDataTable();
     }
 
     private void addToClassBox() {
@@ -320,6 +326,7 @@ public class StudentForm extends JPanel {
                 rs = "Cập nhật thành công!";
             }
             clickListener.showMessage(rs);
+            this.loadClassList();
             this.refresh();
         }
     }

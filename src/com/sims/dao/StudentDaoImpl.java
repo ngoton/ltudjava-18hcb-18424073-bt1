@@ -66,12 +66,14 @@ public class StudentDaoImpl extends IOFileDao implements StudentDao {
         for (Student s : students){
             User user = userDao.getUserByName(s);
             if (user == null){
+                user = new User();
                 user.setId(++lastId);
                 user.setUsername(s.getCode());
                 user.setPassword(s.getCode());
                 user.setRole("USER");
                 user.setStudent(s);
                 userDao.addOne(user);
+                users.add(user);
             }
             else {
                 if (!user.getUsername().equals(s.getCode())){
@@ -82,12 +84,17 @@ public class StudentDaoImpl extends IOFileDao implements StudentDao {
         }
 
         List<User> newList = new ArrayList<>();
-        users = userDao.getList();
 
         for (User u : users) {
-            for (Student s : students) {
-                if(u.getStudent().getId().equals(s.getId()) && u.getRole().equals("USER")){
-                    newList.add(u);
+            if (u.getRole().equals("ADMIN")){
+                newList.add(u);
+            }
+            else {
+                for (Student s : students) {
+                    if(u.getStudent() != null && u.getStudent().getId().equals(s.getId())){
+                        newList.add(u);
+                        break;
+                    }
                 }
             }
         }
@@ -98,11 +105,10 @@ public class StudentDaoImpl extends IOFileDao implements StudentDao {
 
     @Override
     public boolean deleteAll(){
-        List<Student> students = this.getList();
         List<User> newList = new ArrayList<>();
         List<User> users = userDao.getList();
         for (User u : users) {
-            if(u.getRole().equals("USER")){
+            if(u.getRole().equals("ADMIN")){
                 newList.add(u);
             }
         }
@@ -114,8 +120,17 @@ public class StudentDaoImpl extends IOFileDao implements StudentDao {
     public List<Student> importFile(String path){
         List<Student> list = getList();
         List<Student> newList = new ArrayList<>();
+        List<User> userList = userDao.getList();
         Classes classes = null;
         List<String[]> data = readFile(path, ",");
+        Integer lastStudent = 0;
+        if (list.size() > 0) {
+            lastStudent = list.get(list.size() - 1).getId();
+        }
+        Integer lastUser = 0;
+        if (userList.size() > 0) {
+            lastUser = userList.get(userList.size() - 1).getId();
+        }
         int i = 0;
         for (String[] arr : data){
             if (i == 0){
@@ -141,14 +156,9 @@ public class StudentDaoImpl extends IOFileDao implements StudentDao {
                 }
             }
             else if (i > 1){
-                Integer lastId = 0;
-                if (list.size() > 0) {
-                    lastId = list.get(list.size() - 1).getId();
-                }
-                Student student = new Student();
                 String code = arr[1].trim();
-
-                student.setId(++lastId);
+                Student student = new Student();
+                student.setId(++lastStudent);
                 student.setCode(code);
                 student.setName(arr[2].trim());
                 student.setGender(arr[3].trim());
@@ -157,11 +167,6 @@ public class StudentDaoImpl extends IOFileDao implements StudentDao {
                 newList.add(student);
                 list.add(student);
 
-                List<User> userList = userDao.getList();
-                Integer lastUser = 0;
-                if (userList.size() > 0) {
-                    lastUser = userList.get(userList.size() - 1).getId();
-                }
                 User user = new User();
                 user.setId(++lastUser);
                 user.setUsername(code);
@@ -169,6 +174,8 @@ public class StudentDaoImpl extends IOFileDao implements StudentDao {
                 user.setRole("USER");
                 user.setStudent(student);
                 userDao.addOne(user);
+                userList.add(user);
+
             }
             i++;
         }

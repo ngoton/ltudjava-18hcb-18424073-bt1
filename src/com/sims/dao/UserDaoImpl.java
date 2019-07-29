@@ -69,9 +69,11 @@ public class UserDaoImpl extends IOFileDao implements UserDao {
         List<User> users = getList();
         User user = null;
         for (User u : users){
-            if (student.getId().equals(u.getStudent().getId())){
-                user = u;
-                break;
+            if (u.getStudent() != null){
+                if (student.getId().equals(u.getStudent().getId())){
+                    user = u;
+                    break;
+                }
             }
         }
         return user;
@@ -99,15 +101,8 @@ public class UserDaoImpl extends IOFileDao implements UserDao {
     }
 
     @Override
-    public boolean deleteAll(List<User> list){
-        List<User> users = getList();
-        List<User> userList = new ArrayList<>();
-        for (User u : users){
-            if (!list.remove(u)){
-                userList.add(u);
-            }
-        }
-        return writeFile(userList, userFile, false);
+    public boolean deleteAll(List<User> users){
+        return writeFile(users, userFile, false);
     }
 
     @Override

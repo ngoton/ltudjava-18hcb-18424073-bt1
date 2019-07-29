@@ -21,4 +21,8 @@ public class Classes implements Serializable {
     public void setName(String name) {
         this.name = name;
     }
+
+    public String toString() {
+        return this.getId() + "|" + this.getName();
+    }
 }
