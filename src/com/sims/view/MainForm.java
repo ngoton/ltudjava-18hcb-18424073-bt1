@@ -2,6 +2,7 @@ package com.sims.view;
 
 import com.sims.bean.MenuBean;
 import com.sims.controller.ScreenSwitchController;
+import com.sims.model.User;
 import com.sims.util.ClickListener;
 
 import javax.swing.*;
@@ -11,11 +12,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainForm extends JFrame {
+    private User userLogined;
     private ClickListener clickListener;
     private JPanel mainPanel = new JPanel();
     private StudentForm studentPanel = new StudentForm();
+    private ChangePassForm changePassPanel;
 
-    public MainForm(boolean isAdmin){
+    public MainForm(boolean isAdmin, User user){
         super("QUẢN LÝ SINH VIÊN");
         Toolkit toolkit = Toolkit.getDefaultToolkit();
         int xSize = ((int) toolkit.getScreenSize().getWidth());
@@ -23,6 +26,8 @@ public class MainForm extends JFrame {
         int height = (int) (Math.round(ySize * 0.80));
         int width = (int) (Math.round(xSize * 0.80));
         setPreferredSize(new Dimension(width, height));
+        this.userLogined = user;
+        this.changePassPanel = new ChangePassForm(user);
         addComponentsToPane(isAdmin);
         pack();
         clickListener = new ClickListener();
@@ -31,6 +36,7 @@ public class MainForm extends JFrame {
         setLocationRelativeTo(null);
         setVisible(true);
         beforeExit();
+
     }
 
     private void beforeExit() {
@@ -84,13 +90,17 @@ public class MainForm extends JFrame {
         JButton subjectButton = new JButton("Danh mục môn học");
         JButton classButton = new JButton("Danh sách lớp");
         JButton transcriptButton = new JButton("Điểm thi");
-        JButton loginButton = new JButton("Đăng xuất");
+        JButton changePassButton = new JButton("Đổi mật khẩu");
+
+        String lg = "Welcome: " + userLogined.getUsername() + " | Đăng xuất";
+        JButton loginButton = new JButton(lg);
 
         JToolBar toolBar = new JToolBar();
         toolBar.add(studentButton);
         toolBar.add(subjectButton);
         toolBar.add(classButton);
         toolBar.add(transcriptButton);
+        toolBar.add(changePassButton);
         toolBar.add(Box.createHorizontalGlue());
         toolBar.add(loginButton);
         toolBar.setFloatable(false);
@@ -100,6 +110,7 @@ public class MainForm extends JFrame {
 
         List<MenuBean> menuList = new ArrayList<>();
         menuList.add(new MenuBean(studentPanel, studentButton, "student"));
+        menuList.add(new MenuBean(changePassPanel, changePassButton, "changepass"));
         menuList.add(new MenuBean(null, loginButton, "login"));
 
         ScreenSwitchController controller = new ScreenSwitchController(this, mainPanel, toolBar);
@@ -114,11 +125,15 @@ public class MainForm extends JFrame {
 
         JButton calendarButton = new JButton("Thời khóa biểu");
         JButton transcriptButton = new JButton("Điểm thi");
-        JButton loginButton = new JButton("Đăng xuất");
+        JButton changePassButton = new JButton("Đổi mật khẩu");
+
+        String lg = "Welcome: " + userLogined.getUsername() + " | Đăng xuất";
+        JButton loginButton = new JButton(lg);
 
         JToolBar toolBar = new JToolBar();
         toolBar.add(calendarButton);
         toolBar.add(transcriptButton);
+        toolBar.add(changePassButton);
         toolBar.add(Box.createHorizontalGlue());
         toolBar.add(loginButton);
         toolBar.setFloatable(false);

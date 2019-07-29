@@ -14,4 +14,5 @@ public interface UserDao {
     boolean updateOne(User user);
     boolean deleteAll(List<User> users);
     boolean changeName(Integer id, String name);
+    boolean changePassword(User user);
 }

@@ -1,69 +1,60 @@
 package com.sims.view;
 
 import com.sims.controller.LoginController;
+import com.sims.model.User;
 import com.sims.util.ClickListener;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 
-public class LoginForm extends JFrame {
+public class ChangePassForm extends JPanel {
+    private User user;
     private LoginController loginController;
     private ClickListener clickListener;
     private JPanel panel;
     private JLabel titleLabel;
-    private JLabel usernameLabel;
     private JLabel passwordLabel;
-    private JTextField usernameField;
+    private JLabel newPassLabel;
     private JPasswordField passwordField;
-    private JButton loginButton;
-    private JButton cancelButton;
+    private JPasswordField newPassField;
+    private JButton saveButton;
+    private JButton resetButton;
     private JLabel messageLabel;
 
-    public LoginForm(){
-        super("QUẢN LÝ SINH VIÊN");
-
+    public ChangePassForm(User user){
+        this.user = user;
         initComponents();
-        getContentPane().add(panel);
-        pack();
+        loginController = new LoginController();
         clickListener = new ClickListener();
-        setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-        setResizable(false);
-        setLocationRelativeTo(null);
-        setVisible(true);
-        usernameField.requestFocusInWindow();
-        beforeExit();
-        loginController = new LoginController(this, messageLabel);
     }
 
     private void initComponents() {
         panel = new JPanel();
 
-        titleLabel = new JLabel("ĐĂNG NHẬP");
+        titleLabel = new JLabel("ĐỔI MẬT KHẨU");
         titleLabel.setFont(new Font("Arial", 1, 24));
         titleLabel.setForeground(new Color(26316));
         titleLabel.setHorizontalAlignment(JLabel.CENTER);
 
-        usernameLabel = new JLabel("Tên đăng nhập");
-        passwordLabel = new JLabel("Mật khẩu");
-
-        usernameField = new JTextField();
-        usernameField.setPreferredSize(new Dimension(250,30));
-        usernameField.addKeyListener(enterKeyPress());
+        passwordLabel = new JLabel("Mật khẩu cũ");
+        newPassLabel = new JLabel("Mật khẩu mới");
 
         passwordField = new JPasswordField();
         passwordField.setPreferredSize(new Dimension(250,30));
         passwordField.addKeyListener(enterKeyPress());
 
-        loginButton = new JButton("Đăng nhập");
-        loginButton.addActionListener(e->loginButtonClick());
-        loginButton.addKeyListener(enterKeyPress());
+        newPassField = new JPasswordField();
+        newPassField.setPreferredSize(new Dimension(250,30));
+        newPassField.addKeyListener(enterKeyPress());
 
-        cancelButton = new JButton("Thoát");
-        cancelButton.addActionListener(e->cancelButtonClick());
+        saveButton = new JButton("Cập nhật");
+        saveButton.addActionListener(e -> save());
+        saveButton.addKeyListener(enterKeyPress());
+
+        resetButton = new JButton("Nhập lại");
+        resetButton.addActionListener(e->refresh());
 
         messageLabel = new JLabel();
         messageLabel.setForeground(Color.RED);
@@ -74,39 +65,47 @@ public class LoginForm extends JFrame {
         add(panel);
     }
 
-    private void loginButtonClick(){
-        String username = usernameField.getText();
-        String password = new String(passwordField.getPassword());
-        if (username.isEmpty() || password.isEmpty()){
-            messageLabel.setText("Vui lòng nhập vào Username & Password!");
-            usernameField.requestFocus();
+    private void save(){
+        String pass = new String(passwordField.getPassword());
+        String newPass = new String(newPassField.getPassword());
+
+        if (pass.isEmpty()){
+            messageLabel.setText("Vui lòng nhập vào mật khẩu cũ!");
+            passwordField.requestFocus();
+        }
+        else if (newPass.isEmpty()){
+            messageLabel.setText("Vui lòng nhập vào mật khẩu mới!");
+            newPassField.requestFocus();
+        }
+        else if (!pass.equals(user.getPassword())){
+            messageLabel.setText("Mật khẩu cũ không đúng!");
+            passwordField.requestFocus();
         }
         else {
-            loginController.login(username, password);
+            user.setPassword(newPass);
+            boolean response = loginController.changePassword(user);
+            if (response == true){
+                messageLabel.setText("Cập nhật thành công");
+            }
+            else {
+                messageLabel.setText("Cập nhật thất bại");
+            }
+            refresh();
         }
-
     }
 
-    private void cancelButtonClick(){
-        clickListener.exitClick();
+    private void refresh() {
+        passwordField.setText("");
+        newPassField.setText("");
+        passwordField.requestFocus();
     }
 
     private KeyAdapter enterKeyPress(){
         return (new KeyAdapter() {
             public void keyPressed(KeyEvent e) {
                 if (e.getKeyCode()==KeyEvent.VK_ENTER){
-                    loginButtonClick();
+                    save();
                 }
-            }
-        });
-    }
-
-    private void beforeExit() {
-        addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosing(WindowEvent we)
-            {
-                clickListener.exitClick();
             }
         });
     }
@@ -124,14 +123,14 @@ public class LoginForm extends JFrame {
                                         )
                                         .addGroup(layout.createSequentialGroup()
                                                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-                                                        .addComponent(usernameLabel)
-                                                        .addComponent(usernameField)
                                                         .addComponent(passwordLabel)
                                                         .addComponent(passwordField)
+                                                        .addComponent(newPassLabel)
+                                                        .addComponent(newPassField)
                                                         .addGroup(layout.createSequentialGroup()
-                                                                .addComponent(loginButton)
+                                                                .addComponent(saveButton)
                                                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
-                                                                .addComponent(cancelButton, GroupLayout.PREFERRED_SIZE, 87, GroupLayout.PREFERRED_SIZE)
+                                                                .addComponent(resetButton, GroupLayout.PREFERRED_SIZE, 87, GroupLayout.PREFERRED_SIZE)
                                                         )
                                                         .addGroup(layout.createSequentialGroup()
                                                                 .addComponent(messageLabel)
@@ -151,14 +150,6 @@ public class LoginForm extends JFrame {
                                 )
                                 .addGap(34, 34, 34)
                                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                        .addComponent(usernameLabel)
-                                )
-                                .addGap(10, 10, 10)
-                                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                        .addComponent(usernameField)
-                                )
-                                .addGap(28, 28, 28)
-                                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                                         .addComponent(passwordLabel)
                                 )
                                 .addGap(10, 10, 10)
@@ -167,8 +158,16 @@ public class LoginForm extends JFrame {
                                 )
                                 .addGap(28, 28, 28)
                                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                        .addComponent(loginButton)
-                                        .addComponent(cancelButton)
+                                        .addComponent(newPassLabel)
+                                )
+                                .addGap(10, 10, 10)
+                                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                        .addComponent(newPassField)
+                                )
+                                .addGap(28, 28, 28)
+                                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                        .addComponent(saveButton)
+                                        .addComponent(resetButton)
                                 )
                                 .addGap(28, 28, 28)
                                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)

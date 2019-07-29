@@ -9,15 +9,15 @@ import com.sims.view.MainForm;
 import javax.swing.*;
 
 public class LoginController {
-    private UserService userService;
+    private UserService userService = new UserServiceImpl();
     private LoginForm loginForm;
     private JLabel messageLabel;
 
+    public LoginController(){}
 
     public LoginController(LoginForm loginForm, JLabel messageLabel){
         this.loginForm = loginForm;
         this.messageLabel = messageLabel;
-        this.userService = new UserServiceImpl();
     }
 
     public void login(String username, String password){
@@ -28,12 +28,12 @@ public class LoginController {
             }
             else {
                 if (user.getRole().equals("ADMIN")){
-                    MainForm mainForm = new MainForm(true);
+                    MainForm mainForm = new MainForm(true, user);
                     loginForm.setVisible(false);
                     mainForm.setVisible(true);
                 }
                 else {
-                    MainForm mainForm = new MainForm(false);
+                    MainForm mainForm = new MainForm(false, user);
                     loginForm.setVisible(false);
                     mainForm.setVisible(true);
                 }
@@ -41,5 +41,9 @@ public class LoginController {
         }catch (Exception ex){
             messageLabel.setText(ex.toString());
         }
+    }
+
+    public boolean changePassword(User user){
+        return userService.changePassword(user);
     }
 }

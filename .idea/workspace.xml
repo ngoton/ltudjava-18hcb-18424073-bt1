@@ -2,14 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="58b4aa5b-f3f4-4390-bf83-97490635bd8f" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/com/sims/dao/StudentDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/sims/dao/StudentDaoImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/sims/view/ChangePassForm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/sims/com/sims/view/MainForm.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/sims/com/sims/view/MainForm.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/sims/controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/sims/controller/LoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/sims/dao/UserDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/sims/dao/UserDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/sims/dao/UserDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/sims/dao/UserDaoImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/sims/data/class.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/sims/data/class.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/sims/data/student.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/sims/data/student.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/sims/model/Classes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/sims/model/Classes.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/sims/model/Subject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/sims/model/Subject.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/sims/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/sims/model/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/sims/view/StudentForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/sims/view/StudentForm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/sims/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/sims/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/sims/service/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/sims/service/UserServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/sims/view/LoginForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/sims/view/LoginForm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/sims/view/MainForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/sims/view/MainForm.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -23,53 +25,50 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/sims/dao/StudentDaoImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="302">
-              <caret line="176" column="35" selection-start-line="176" selection-start-column="35" selection-end-line="176" selection-end-column="35" />
+            <state relative-caret-position="136">
+              <caret line="14" column="19" selection-start-line="14" selection-start-column="12" selection-end-line="14" selection-end-column="19" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/sims/service/StudentServiceImpl.java">
+        <entry file="file://$PROJECT_DIR$/src/com/sims/view/MainForm.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="98">
-              <caret line="22" selection-start-line="22" selection-end-line="22" />
+            <state relative-caret-position="306">
+              <caret line="18" column="42" selection-start-line="18" selection-start-column="42" selection-end-line="18" selection-end-column="42" />
               <folding>
-                <element signature="e#538#539#0" expanded="true" />
-                <element signature="e#695#696#0" expanded="true" />
-                <element signature="e#745#746#0" expanded="true" />
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/sims/controller/StudentController.java">
+        <entry file="file://$PROJECT_DIR$/src/com/sims/view/ChangePassForm.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="242">
-              <caret line="31" selection-start-line="31" selection-end-line="31" />
+            <state relative-caret-position="255">
+              <caret line="53" column="18" selection-start-line="53" selection-start-column="18" selection-end-line="53" selection-end-column="18" />
               <folding>
-                <element signature="e#812#813#0" expanded="true" />
-                <element signature="e#859#860#0" expanded="true" />
-                <element signature="e#961#962#0" expanded="true" />
-                <element signature="e#1094#1095#0" expanded="true" />
-                <element signature="e#1148#1149#0" expanded="true" />
+                <element signature="imports" expanded="true" />
+                <element signature="e#3083#3288#0" expanded="true" />
+                <element signature="e#3287#3288#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/sims/view/StudentForm.java">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/com/sims/view/LoginForm.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-722">
-              <caret line="267" column="13" lean-forward="true" selection-start-line="267" selection-start-column="13" selection-end-line="267" selection-end-column="13" />
+            <state relative-caret-position="154">
+              <caret line="62" column="19" selection-start-line="62" selection-start-column="19" selection-end-line="62" selection-end-column="19" />
               <folding>
-                <element signature="e#3573#4735#0" expanded="true" />
-                <element signature="e#4734#4735#0" expanded="true" />
+                <element signature="imports" expanded="true" />
+                <element signature="e#2884#3089#0" expanded="true" />
+                <element signature="e#3088#3089#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -78,8 +77,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/sims/dao/UserDaoImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="107">
-              <caret line="85" selection-start-line="85" selection-end-line="85" />
+            <state relative-caret-position="217">
+              <caret line="130" column="8" selection-start-line="130" selection-start-column="8" selection-end-line="130" selection-end-column="8" />
               <folding>
                 <element signature="e#307#308#0" expanded="true" />
                 <element signature="e#377#378#0" expanded="true" />
@@ -89,99 +88,66 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/sims/model/Student.java">
+        <entry file="file://$PROJECT_DIR$/src/com/sims/controller/LoginController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="124">
-              <caret line="50" selection-start-line="50" selection-end-line="50" />
-              <folding>
-                <element signature="e#294#295#0" expanded="true" />
-                <element signature="e#319#320#0" expanded="true" />
-                <element signature="e#356#357#0" expanded="true" />
-                <element signature="e#384#385#0" expanded="true" />
-                <element signature="e#415#416#0" expanded="true" />
-                <element signature="e#442#443#0" expanded="true" />
-                <element signature="e#482#483#0" expanded="true" />
-                <element signature="e#514#515#0" expanded="true" />
-                <element signature="e#545#546#0" expanded="true" />
-                <element signature="e#572#573#0" expanded="true" />
-                <element signature="e#612#613#0" expanded="true" />
-                <element signature="e#644#645#0" expanded="true" />
-                <element signature="e#677#678#0" expanded="true" />
-                <element signature="e#706#707#0" expanded="true" />
-                <element signature="e#750#751#0" expanded="true" />
-                <element signature="e#786#787#0" expanded="true" />
-                <element signature="e#821#822#0" expanded="true" />
-                <element signature="e#852#853#0" expanded="true" />
-                <element signature="e#900#901#0" expanded="true" />
-                <element signature="e#980#981#0" expanded="true" />
-                <element signature="e#1015#1016#0" expanded="true" />
-                <element signature="e#1072#1073#0" expanded="true" />
-                <element signature="e#1120#1121#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/sims/model/User.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="175">
-              <caret line="52" selection-start-line="52" selection-end-line="52" />
-              <folding>
-                <element signature="e#263#264#0" expanded="true" />
-                <element signature="e#288#289#0" expanded="true" />
-                <element signature="e#325#326#0" expanded="true" />
-                <element signature="e#353#354#0" expanded="true" />
-                <element signature="e#388#389#0" expanded="true" />
-                <element signature="e#419#420#0" expanded="true" />
-                <element signature="e#467#468#0" expanded="true" />
-                <element signature="e#507#508#0" expanded="true" />
-                <element signature="e#542#543#0" expanded="true" />
-                <element signature="e#573#574#0" expanded="true" />
-                <element signature="e#621#622#0" expanded="true" />
-                <element signature="e#661#662#0" expanded="true" />
-                <element signature="e#692#693#0" expanded="true" />
-                <element signature="e#719#720#0" expanded="true" />
-                <element signature="e#759#760#0" expanded="true" />
-                <element signature="e#791#792#0" expanded="true" />
-                <element signature="e#826#827#0" expanded="true" />
-                <element signature="e#856#857#0" expanded="true" />
-                <element signature="e#903#904#0" expanded="true" />
-                <element signature="e#941#942#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/sims/model/Classes.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="107">
-              <caret line="9" selection-start-line="9" selection-end-line="9" />
-              <folding>
-                <element signature="e#204#205#0" expanded="true" />
-                <element signature="e#241#242#0" expanded="true" />
-                <element signature="e#269#270#0" expanded="true" />
-                <element signature="e#300#301#0" expanded="true" />
-                <element signature="e#327#328#0" expanded="true" />
-                <element signature="e#367#368#0" expanded="true" />
-                <element signature="e#399#400#0" expanded="true" />
-                <element signature="e#431#432#0" expanded="true" />
-                <element signature="e#489#490#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/sims/dao/ClassesDaoImpl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="243">
-              <caret line="38" selection-start-line="38" selection-end-line="38" />
+            <state relative-caret-position="236">
+              <caret line="19" column="41" selection-start-line="19" selection-start-column="41" selection-end-line="19" selection-end-column="41" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#288#289#0" expanded="true" />
-                <element signature="e#359#360#0" expanded="true" />
+                <element signature="e#1462#1463#0" expanded="true" />
+                <element signature="e#1522#1523#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/sims/service/UserService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="102">
+              <caret line="6" column="12" selection-start-line="6" selection-start-column="12" selection-end-line="6" selection-end-column="12" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/sims/view/StudentForm.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1251">
+              <caret line="333" column="4" lean-forward="true" selection-start-line="333" selection-start-column="4" selection-end-line="341" selection-end-column="5" />
+              <folding>
+                <element signature="e#3573#4735#0" expanded="true" />
+                <element signature="e#4734#4735#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/sims/service/UserServiceImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="306">
+              <caret line="18" column="38" lean-forward="true" selection-start-line="18" selection-start-column="38" selection-end-line="18" selection-end-column="38" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#230#231#0" expanded="true" />
+                <element signature="e#278#279#0" expanded="true" />
+                <element signature="e#336#337#0" expanded="true" />
+                <element signature="e#392#393#0" expanded="true" />
+                <element signature="e#439#440#0" expanded="true" />
+                <element signature="e#468#469#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/sims/dao/UserDao.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="234">
+              <caret line="15" column="12" selection-start-line="15" selection-start-column="12" selection-end-line="15" selection-end-column="12" />
+              <folding>
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -220,11 +186,14 @@
       <find>list</find>
       <find>importButton</find>
       <find>studentDao</find>
+      <find>passwordField</find>
+      <find>cancelButton</find>
+      <find>changeName</find>
+      <find>userDao</find>
     </findStrings>
     <replaceStrings>
       <replace>panel</replace>
       <replace>addButton</replace>
-      <replace>resetButton</replace>
       <replace>titleLabel</replace>
       <replace>codeLabel</replace>
       <replace>nameLabel</replace>
@@ -241,6 +210,8 @@
       <replace>saveButton</replace>
       <replace>refresh</replace>
       <replace>save</replace>
+      <replace>newPassField</replace>
+      <replace>resetButton</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -258,15 +229,10 @@
         <option value="$PROJECT_DIR$/src/com/sims/util/DialogClose.java" />
         <option value="$PROJECT_DIR$/src/com/sims/util/ExitListener.java" />
         <option value="$PROJECT_DIR$/src/com/sims/controller/ScreenSwitchController.java" />
-        <option value="$PROJECT_DIR$/src/com/sims/service/UserService.java" />
-        <option value="$PROJECT_DIR$/src/com/sims/view/LoginForm.java" />
         <option value="$PROJECT_DIR$/src/com/sims/util/StudentTableModel.java" />
-        <option value="$PROJECT_DIR$/src/com/sims/service/UserServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/com/sims/controller/LoginController.java" />
         <option value="$PROJECT_DIR$/src/com/sims/service/ClassesService.java" />
         <option value="$PROJECT_DIR$/src/com/sims/service/ClassesServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/com/sims/App.java" />
-        <option value="$PROJECT_DIR$/src/com/sims/view/MainForm.java" />
         <option value="$PROJECT_DIR$/src/com/sims/util/ClickListener.java" />
         <option value="$PROJECT_DIR$/src/com/sims/service/StudentServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/com/sims/service/StudentService.java" />
@@ -276,8 +242,6 @@
         <option value="$PROJECT_DIR$/src/com/sims/dao/IOFileDao.java" />
         <option value="$PROJECT_DIR$/src/com/sims/model/Student.java" />
         <option value="$PROJECT_DIR$/src/com/sims/dao/StudentDao.java" />
-        <option value="$PROJECT_DIR$/src/com/sims/dao/UserDao.java" />
-        <option value="$PROJECT_DIR$/src/com/sims/dao/UserDaoImpl.java" />
         <option value="$PROJECT_DIR$/src/com/sims/data/student.txt" />
         <option value="$PROJECT_DIR$/src/com/sims/data/user.txt" />
         <option value="$PROJECT_DIR$/src/com/sims/model/Classes.java" />
@@ -286,6 +250,14 @@
         <option value="$PROJECT_DIR$/src/com/sims/view/StudentForm.java" />
         <option value="$PROJECT_DIR$/src/com/sims/model/User.java" />
         <option value="$PROJECT_DIR$/src/com/sims/dao/StudentDaoImpl.java" />
+        <option value="$PROJECT_DIR$/src/com/sims/view/MainForm.java" />
+        <option value="$PROJECT_DIR$/src/com/sims/service/UserService.java" />
+        <option value="$PROJECT_DIR$/src/com/sims/dao/UserDao.java" />
+        <option value="$PROJECT_DIR$/src/com/sims/service/UserServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/com/sims/dao/UserDaoImpl.java" />
+        <option value="$PROJECT_DIR$/src/com/sims/controller/LoginController.java" />
+        <option value="$PROJECT_DIR$/src/com/sims/view/LoginForm.java" />
+        <option value="$PROJECT_DIR$/src/com/sims/view/ChangePassForm.java" />
       </list>
     </option>
   </component>
@@ -320,6 +292,34 @@
               <item name="sims" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="sims" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="sims" type="b2602c69:ProjectViewProjectNode" />
+              <item name="sims" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="sims" type="462c0819:PsiDirectoryNode" />
+              <item name="controller" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="sims" type="b2602c69:ProjectViewProjectNode" />
+              <item name="sims" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="sims" type="462c0819:PsiDirectoryNode" />
+              <item name="dao" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="sims" type="b2602c69:ProjectViewProjectNode" />
+              <item name="sims" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="sims" type="462c0819:PsiDirectoryNode" />
+              <item name="service" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="sims" type="b2602c69:ProjectViewProjectNode" />
+              <item name="sims" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="sims" type="462c0819:PsiDirectoryNode" />
+              <item name="view" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -396,22 +396,23 @@
       <workItem from="1564302906129" duration="5576000" />
       <workItem from="1564323094472" duration="16040000" />
       <workItem from="1564364098687" duration="18777000" />
-      <workItem from="1564413007209" duration="10937000" />
+      <workItem from="1564413007209" duration="15965000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="171816000" />
+    <option name="totallyTimeSpent" value="176844000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Designer" order="0" />
       <window_info id="UI Designer" order="1" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info id="Image Layers" order="4" />
-      <window_info active="true" content_ui="combo" id="Project" order="5" visible="true" weight="0.18532526" />
+      <window_info content_ui="combo" id="Project" order="5" visible="true" weight="0.18532526" />
       <window_info id="Structure" order="6" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Docker" order="0" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="1" />
@@ -420,7 +421,7 @@
       <window_info anchor="bottom" id="Event Log" order="4" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="5" />
       <window_info anchor="bottom" id="Find" order="6" weight="0.3293011" />
-      <window_info anchor="bottom" id="Run" order="7" visible="true" weight="0.28921568" />
+      <window_info active="true" anchor="bottom" id="Run" order="7" visible="true" weight="0.28921568" />
       <window_info anchor="bottom" id="Debug" order="8" weight="0.3970588" />
       <window_info anchor="bottom" id="Cvs" order="9" weight="0.25" />
       <window_info anchor="bottom" id="Messages" order="10" weight="0.32189542" />
@@ -434,11 +435,23 @@
       <window_info anchor="right" id="Palette" order="5" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="6" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="7" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="8" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="8" weight="0.24962178" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/sims/view/ChangePassForm.java</url>
+          <line>85</line>
+          <properties />
+          <option name="timeStamp" value="27" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
@@ -494,7 +507,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_192/src.zip!/javax/swing/GroupLayout.java" />
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_192/src.zip!/java/awt/Color.java" />
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/src.zip!/javax/swing/JLayer.java" />
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/src.zip!/java/lang/Class.java" />
@@ -539,13 +551,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/sims/service/UserService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="17" selection-start-line="4" selection-start-column="17" selection-end-line="4" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/sims/util/StudentTableModel.java" />
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/src.zip!/javax/swing/JComponent.java" />
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/src.zip!/javax/swing/DefaultComboBoxModel.java" />
@@ -560,27 +565,7 @@
       </provider>
     </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_192/src.zip!/javax/swing/JComponent.java" />
-    <entry file="file://$PROJECT_DIR$/src/com/sims/controller/ScreenSwitchController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="48" selection-start-line="48" selection-end-line="48" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_192/src.zip!/javax/swing/JTable.java" />
-    <entry file="file://$PROJECT_DIR$/src/com/sims/view/MainForm.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="133" column="64" lean-forward="true" selection-start-line="133" selection-start-column="64" selection-end-line="133" selection-end-column="64" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/sims/service/StudentService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
@@ -620,69 +605,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/sims/dao/UserDao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" column="22" selection-start-line="13" selection-start-column="22" selection-end-line="13" selection-end-column="22" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/sims/dao/StudentDao.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
           <caret line="8" column="37" selection-start-line="8" selection-start-column="37" selection-end-line="8" selection-end-column="37" />
           <folding>
             <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/sims/App.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="42" selection-start-line="8" selection-start-column="42" selection-end-line="8" selection-end-column="42" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#137#138#0" expanded="true" />
-            <element signature="e#204#205#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/sims/view/LoginForm.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="83" selection-start-line="83" selection-end-line="83" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2884#3089#0" expanded="true" />
-            <element signature="e#3088#3089#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/sims/controller/LoginController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="174">
-          <caret line="24" selection-start-line="24" selection-end-line="24" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/sims/service/UserServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" selection-start-line="14" selection-end-line="14" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#230#231#0" expanded="true" />
-            <element signature="e#278#279#0" expanded="true" />
-            <element signature="e#392#393#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -876,17 +804,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/sims/dao/UserDaoImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="107">
-          <caret line="85" selection-start-line="85" selection-end-line="85" />
-          <folding>
-            <element signature="e#307#308#0" expanded="true" />
-            <element signature="e#377#378#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/sims/service/StudentServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="98">
@@ -899,10 +816,42 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/sims/App.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="42" selection-start-line="8" selection-start-column="42" selection-end-line="8" selection-end-column="42" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#137#138#0" expanded="true" />
+            <element signature="e#204#205#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/sims/controller/ScreenSwitchController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="268">
+          <caret line="40" column="26" selection-start-line="40" selection-start-column="26" selection-end-line="40" selection-end-column="26" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/sims/view/MainForm.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="18" column="42" selection-start-line="18" selection-start-column="42" selection-end-line="18" selection-end-column="42" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/sims/view/StudentForm.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-722">
-          <caret line="267" column="13" lean-forward="true" selection-start-line="267" selection-start-column="13" selection-end-line="267" selection-end-column="13" />
+        <state relative-caret-position="1251">
+          <caret line="333" column="4" lean-forward="true" selection-start-line="333" selection-start-column="4" selection-end-line="341" selection-end-column="5" />
           <folding>
             <element signature="e#3573#4735#0" expanded="true" />
             <element signature="e#4734#4735#0" expanded="true" />
@@ -912,8 +861,88 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/sims/dao/StudentDaoImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="302">
-          <caret line="176" column="35" selection-start-line="176" selection-start-column="35" selection-end-line="176" selection-end-column="35" />
+        <state relative-caret-position="136">
+          <caret line="14" column="19" selection-start-line="14" selection-start-column="12" selection-end-line="14" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/sims/dao/UserDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="234">
+          <caret line="15" column="12" selection-start-line="15" selection-start-column="12" selection-end-line="15" selection-end-column="12" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/sims/dao/UserDaoImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="217">
+          <caret line="130" column="8" selection-start-line="130" selection-start-column="8" selection-end-line="130" selection-end-column="8" />
+          <folding>
+            <element signature="e#307#308#0" expanded="true" />
+            <element signature="e#377#378#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/sims/service/UserService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="12" selection-start-line="6" selection-start-column="12" selection-end-line="6" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/sims/service/UserServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="18" column="38" lean-forward="true" selection-start-line="18" selection-start-column="38" selection-end-line="18" selection-end-column="38" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#230#231#0" expanded="true" />
+            <element signature="e#278#279#0" expanded="true" />
+            <element signature="e#336#337#0" expanded="true" />
+            <element signature="e#392#393#0" expanded="true" />
+            <element signature="e#439#440#0" expanded="true" />
+            <element signature="e#468#469#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/sims/controller/LoginController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="236">
+          <caret line="19" column="41" selection-start-line="19" selection-start-column="41" selection-end-line="19" selection-end-column="41" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1462#1463#0" expanded="true" />
+            <element signature="e#1522#1523#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/sims/view/ChangePassForm.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="53" column="18" selection-start-line="53" selection-start-column="18" selection-end-line="53" selection-end-column="18" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#3083#3288#0" expanded="true" />
+            <element signature="e#3287#3288#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/sims/view/LoginForm.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="154">
+          <caret line="62" column="19" selection-start-line="62" selection-start-column="19" selection-end-line="62" selection-end-column="19" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2884#3089#0" expanded="true" />
+            <element signature="e#3088#3089#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -14,4 +14,8 @@ public class UserServiceImpl implements UserService {
     public User login(String username, String password){
         return userDao.login(username, password);
     }
+
+    public boolean changePassword(User user){
+        return userDao.changePassword(user);
+    }
 }

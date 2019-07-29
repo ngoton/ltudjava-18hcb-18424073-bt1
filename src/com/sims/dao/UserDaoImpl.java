@@ -110,11 +110,25 @@ public class UserDaoImpl extends IOFileDao implements UserDao {
         List<User> users = getList();
         List<User> userList = new ArrayList<>();
         for (User u : users){
-            if (u.getId().equals(getUserById(id))){
+            if (u.getId().equals(id)){
                 u.setUsername(name);
             }
             userList.add(u);
         }
         return writeFile(userList, userFile, false);
+    }
+
+    @Override
+    public boolean changePassword(User user){
+        List<User> users = getList();
+        List<User> userList = new ArrayList<>();
+        for (User u : users){
+            if (u.getId().equals(user.getId())){
+                u.setPassword(user.getPassword());
+            }
+            userList.add(u);
+        }
+        writeFile(userList, userFile, false);
+        return true;
     }
 }
