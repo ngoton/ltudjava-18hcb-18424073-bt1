@@ -55,6 +55,18 @@ public class AttendanceDaoImpl extends IOFileDao implements AttendanceDao {
     }
 
     @Override
+    public List<Attendance> getAttenddanceByCalendar(Calendar calendar){
+        List<Attendance> attendances = getList();
+        List<Attendance> attendanceList = new ArrayList<>();
+        for (Attendance a : attendances){
+            if (calendar.getId().equals(a.getCalendar().getId())){
+                attendanceList.add(a);
+            }
+        }
+        return attendanceList;
+    }
+
+    @Override
     public boolean save(List<Attendance> attendances){
         return writeFile(attendances, attendanceFile, false);
     }
@@ -69,6 +81,11 @@ public class AttendanceDaoImpl extends IOFileDao implements AttendanceDao {
     @Override
     public boolean deleteAll(){
         return writeFile(null, attendanceFile, false);
+    }
+
+    @Override
+    public boolean updateAll(List<Attendance> attendances){
+        return writeFile(attendances, attendanceFile, false);
     }
 
 }
