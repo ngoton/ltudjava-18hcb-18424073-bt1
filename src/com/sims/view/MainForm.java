@@ -16,6 +16,7 @@ public class MainForm extends JFrame {
     private ClickListener clickListener;
     private JPanel mainPanel = new JPanel();
     private StudentForm studentPanel = new StudentForm();
+    private CalendarForm calendarPanel = new CalendarForm();
     private ChangePassForm changePassPanel;
 
     public MainForm(boolean isAdmin, User user){
@@ -87,17 +88,17 @@ public class MainForm extends JFrame {
         BorderLayout layout = new BorderLayout();
 
         JButton studentButton = new JButton("Quản lý sinh viên");
-        JButton subjectButton = new JButton("Danh mục môn học");
+        JButton calendarButton = new JButton("Thời khóa biểu");
         JButton classButton = new JButton("Danh sách lớp");
         JButton transcriptButton = new JButton("Điểm thi");
         JButton changePassButton = new JButton("Đổi mật khẩu");
 
-        String lg = "Welcome: " + userLogined.getUsername() + " | Đăng xuất";
+        String lg = "[ " + userLogined.getUsername() + " ] Đăng xuất";
         JButton loginButton = new JButton(lg);
 
         JToolBar toolBar = new JToolBar();
         toolBar.add(studentButton);
-        toolBar.add(subjectButton);
+        toolBar.add(calendarButton);
         toolBar.add(classButton);
         toolBar.add(transcriptButton);
         toolBar.add(changePassButton);
@@ -110,6 +111,7 @@ public class MainForm extends JFrame {
 
         List<MenuBean> menuList = new ArrayList<>();
         menuList.add(new MenuBean(studentPanel, studentButton, "student"));
+        menuList.add(new MenuBean(calendarPanel, calendarButton, "student"));
         menuList.add(new MenuBean(changePassPanel, changePassButton, "changepass"));
         menuList.add(new MenuBean(null, loginButton, "login"));
 
@@ -127,7 +129,7 @@ public class MainForm extends JFrame {
         JButton transcriptButton = new JButton("Điểm thi");
         JButton changePassButton = new JButton("Đổi mật khẩu");
 
-        String lg = "Welcome: " + userLogined.getUsername() + " | Đăng xuất";
+        String lg = "[ " + userLogined.getUsername() + " ] Đăng xuất";
         JButton loginButton = new JButton(lg);
 
         JToolBar toolBar = new JToolBar();

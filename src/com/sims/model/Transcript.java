@@ -5,7 +5,7 @@ import java.io.Serializable;
 public class Transcript implements Serializable {
     private Integer id;
     private Student student;
-    private Subject subject;
+    private Calendar calendar;
     private Float middleMark;
     private Float finalMark;
     private Float otherMark;
@@ -27,12 +27,12 @@ public class Transcript implements Serializable {
         this.student = student;
     }
 
-    public Subject getSubject() {
-        return subject;
+    public Calendar getCalendar() {
+        return calendar;
     }
 
-    public void setSubject(Subject subject) {
-        this.subject = subject;
+    public void setCalendar(Calendar calendar) {
+        this.calendar = calendar;
     }
 
     public Float getMiddleMark() {
@@ -65,5 +65,9 @@ public class Transcript implements Serializable {
 
     public void setMark(Float mark) {
         this.mark = mark;
+    }
+
+    public String toString() {
+        return this.getId() + "|" + this.getStudent().getId() + "|" + this.getCalendar().getId() + "|" + this.getMiddleMark() + "|" + this.getFinalMark() + "|" + this.getOtherMark() + "|" + this.getMark();
     }
 }

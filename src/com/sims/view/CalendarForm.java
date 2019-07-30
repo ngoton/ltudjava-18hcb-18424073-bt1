@@ -1,8 +1,9 @@
 package com.sims.view;
 
-import com.sims.controller.StudentController;
+import com.sims.controller.CalendarController;
+import com.sims.model.Calendar;
 import com.sims.model.Classes;
-import com.sims.model.Student;
+import com.sims.model.Subject;
 import com.sims.util.ClickListener;
 
 import javax.swing.*;
@@ -13,56 +14,67 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 import java.awt.*;
-import java.awt.event.*;
-import java.io.File;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.List;
 
-public class StudentForm extends JPanel {
-    private StudentController controller;
+public class CalendarForm extends JPanel {
+    private CalendarController controller;
     private ClickListener clickListener;
-    private List<Student> list;
+    private List<Calendar> list;
     DefaultTableModel model;
     private List<Classes> classList;
     DefaultComboBoxModel classFieldModel;
     DefaultComboBoxModel classBoxModel;
+    private List<Subject> subjectList;
+    DefaultComboBoxModel subjectFieldModel;
     private JPanel panel;
     private JButton addButton;
     private JButton importButton;
     private JButton saveButton;
     private JButton resetButton;
     private JLabel titleLabel;
-    private JLabel codeLabel;
-    private JLabel nameLabel;
-    private JLabel genderLabel;
-    private JLabel idLabel;
+    private JLabel subjectLabel;
+    private JLabel roomLabel;
     private JLabel classLabel;
     private JComboBox classBox;
     private JScrollPane jScrollPane1;
-    private JTable studentTable;
-    private JTextField nameField;
-    private JTextField idField;
-    private JTextField codeField;
+    private JTable calendarTable;
+    private JComboBox subjectField;
+    private JTextField roomField;
     private JComboBox classField;
     private JTextField searchField;
-    private ButtonGroup genderGroup;
-    private JRadioButton maleButton;
-    private JRadioButton femaleButton;
     private JButton deleteButton;
     private JButton removeButton;
 
     private TableRowSorter<TableModel> rowSorter;
-    private Student selectedStudent;
+    private Calendar selectedCalendar;
     private Integer selectedRowIndex;
 
-    public StudentForm() {
+    public CalendarForm() {
         initComponents();
         clickListener = new ClickListener();
-        this.controller = new StudentController(this);
+        this.controller = new CalendarController(this);
         this.list = controller.getList();
+        loadSubjectList();
         loadClassList();
-        this.model = (DefaultTableModel) studentTable.getModel();
+        this.model = (DefaultTableModel) calendarTable.getModel();
         showDataTable();
+    }
+
+    private void loadSubjectList(){
+        this.subjectField.setModel(new DefaultComboBoxModel());
+        this.subjectList = controller.getSubjectList();
+        this.subjectFieldModel = (DefaultComboBoxModel) subjectField.getModel();
+        addToSubjectBox();
+    }
+
+    private void addToSubjectBox() {
+        for (Subject subject : subjectList) {
+            subjectFieldModel.addElement(subject.getName());
+        }
+        subjectField.setModel(subjectFieldModel);
     }
 
     private void loadClassList(){
@@ -87,46 +99,39 @@ public class StudentForm extends JPanel {
 
     private void showDataTable() {
         model.setColumnIdentifiers(new Object[]{
-                "STT", "MSSV", "Họ tên", "Giới tính", "CMND", "Lớp"
+                "STT", "Mã môn", "Tên môn", "Phòng học", "Lớp"
         });
         int i = 1;
-        for (Student student : list) {
+        for (Calendar calendar : list) {
             model.addRow(new Object[]{
-                    i++, student.getCode(), student.getName(), student.getGender(), student.getIdNumber(), student.getStudentClass().getName()
+                    i++, calendar.getSubject().getCode(), calendar.getSubject().getName(), calendar.getRoom(), calendar.getClasses().getName()
             });
         }
 
-        rowSorter = new TableRowSorter<>(studentTable.getModel());
-        studentTable.setRowSorter(rowSorter);
+        rowSorter = new TableRowSorter<>(calendarTable.getModel());
+        calendarTable.setRowSorter(rowSorter);
 
         DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
         centerRenderer.setHorizontalAlignment(JLabel.CENTER);
-        studentTable.getColumnModel().getColumn(0).setCellRenderer(centerRenderer);
-        studentTable.getColumnModel().getColumn(0).setPreferredWidth(20);
-        studentTable.addMouseListener(getDataRow());
+        calendarTable.getColumnModel().getColumn(0).setCellRenderer(centerRenderer);
+        calendarTable.getColumnModel().getColumn(0).setPreferredWidth(20);
+        calendarTable.addMouseListener(getDataRow());
     }
 
     private MouseAdapter getDataRow() {
         return (new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                if (e.getClickCount() == 1 && studentTable.getSelectedRow() != -1) {
-                    DefaultTableModel model = (DefaultTableModel) studentTable.getModel();
-                    selectedRowIndex = studentTable.getSelectedRow();
-                    selectedRowIndex = studentTable.convertRowIndexToModel(selectedRowIndex);
+                if (e.getClickCount() == 1 && calendarTable.getSelectedRow() != -1) {
+                    DefaultTableModel model = (DefaultTableModel) calendarTable.getModel();
+                    selectedRowIndex = calendarTable.getSelectedRow();
+                    selectedRowIndex = calendarTable.convertRowIndexToModel(selectedRowIndex);
 
-                    selectedStudent = list.get(selectedRowIndex);
+                    selectedCalendar = list.get(selectedRowIndex);
 
-                    codeField.setText(model.getValueAt(selectedRowIndex, 1).toString());
-                    nameField.setText(model.getValueAt(selectedRowIndex, 2).toString());
-                    idField.setText(model.getValueAt(selectedRowIndex, 4).toString());
-                    classField.setSelectedItem(model.getValueAt(selectedRowIndex, 5).toString());
-
-                    if (model.getValueAt(selectedRowIndex, 3).toString().equals("Nam")) {
-                        maleButton.setSelected(true);
-                    } else {
-                        femaleButton.setSelected(true);
-                    }
+                    subjectField.setSelectedItem(model.getValueAt(selectedRowIndex, 2).toString());
+                    roomField.setText(model.getValueAt(selectedRowIndex, 3).toString());
+                    classField.setSelectedItem(model.getValueAt(selectedRowIndex, 4).toString());
 
                 }
             }
@@ -173,24 +178,16 @@ public class StudentForm extends JPanel {
 
     private void save() {
         String rs = "Lưu thất bại!";
-        String code = codeField.getText().trim();
-        String name = nameField.getText().trim();
-        String idNumber = idField.getText().trim();
+        String room = roomField.getText().trim();
         String classSelected = classField.getSelectedItem().toString();
-        String gender = "Nam";
-        if (femaleButton.isSelected()) {
-            gender = "Nữ";
-        }
+        String subjectSelected = subjectField.getSelectedItem().toString();
+        String codeSelected = "";
 
-        if (code.isEmpty()) {
-            rs = "Vui lòng nhập vào MSSV!";
-            codeField.requestFocus();
-        } else if (name.isEmpty()) {
-            rs = "Vui lòng nhập vào Họ tên!";
-            nameField.requestFocus();
+        if (room.isEmpty()) {
+            rs = "Vui lòng nhập vào Phòng học!";
+            roomField.requestFocus();
         } else {
-            boolean checkId = true;
-            List<Student> newList = new ArrayList<>();
+            List<Calendar> newList = new ArrayList<>();
             Classes classes = new Classes();
             for (Classes c : classList) {
                 if (c.getName().equals(classSelected)) {
@@ -198,76 +195,61 @@ public class StudentForm extends JPanel {
                     break;
                 }
             }
-            if (selectedStudent != null) {
-                selectedStudent.setCode(code);
-                selectedStudent.setName(name);
-                selectedStudent.setGender(gender);
-                selectedStudent.setIdNumber(idNumber);
-                selectedStudent.setStudentClass(classes);
+            Subject subject = new Subject();
+            for (Subject sj : subjectList) {
+                if (sj.getName().equals(subjectSelected)) {
+                    subject = sj;
+                    codeSelected = sj.getCode();
+                    break;
+                }
+            }
+            if (selectedCalendar != null) {
+                selectedCalendar.setRoom(room);
+                selectedCalendar.setClasses(classes);
+                selectedCalendar.setSubject(subject);
 
-                for (Student s : list) {
-                    if (selectedStudent.getId().equals(s.getId())) {
-                        newList.add(selectedStudent);
+                for (Calendar s : list) {
+                    if (selectedCalendar.getId().equals(s.getId())) {
+                        newList.add(selectedCalendar);
                     } else {
-                        if (code.equals(s.getCode())) {
-                            checkId = false;
-                            break;
-                        }
                         newList.add(s);
                     }
                 }
             } else {
-                for (Student s : list) {
-                    if (code.equals(s.getCode())) {
-                        checkId = false;
-                        break;
-                    }
+                newList = list;
+                Integer lastId = 0;
+                if (list.size() > 0) {
+                    lastId = list.get(list.size() - 1).getId();
                 }
-                if (checkId == true) {
-                    newList = list;
-                    Integer lastId = 0;
-                    if (list.size() > 0) {
-                        lastId = list.get(list.size() - 1).getId();
-                    }
-                    Student newStudent = new Student();
-                    newStudent.setId(++lastId);
-                    newStudent.setCode(code);
-                    newStudent.setName(name);
-                    newStudent.setGender(gender);
-                    newStudent.setIdNumber(idNumber);
-                    newStudent.setStudentClass(classes);
-                    newList.add(newStudent);
-                }
-
+                Calendar newCalendar = new Calendar();
+                newCalendar.setId(++lastId);
+                newCalendar.setRoom(room);
+                newCalendar.setSubject(subject);
+                newCalendar.setClasses(classes);
+                newList.add(newCalendar);
             }
 
-            if (checkId == true) {
-                boolean response = controller.save(newList);
-                if (response == true) {
-                    if (selectedStudent != null) {
-                        model.setValueAt(code, selectedRowIndex, 1);
-                        model.setValueAt(name, selectedRowIndex, 2);
-                        model.setValueAt(gender, selectedRowIndex, 3);
-                        model.setValueAt(idNumber, selectedRowIndex, 4);
-                        model.setValueAt(classSelected, selectedRowIndex, 5);
-                    } else {
-                        Integer i = 0;
-                        if (model.getRowCount() > 0) {
-                            i = Integer.parseInt(model.getValueAt(model.getRowCount() - 1, 0).toString());
-                        }
-                        model.addRow(new Object[]{
-                                ++i, code, name, gender, idNumber, classSelected
-                        });
+            boolean response = controller.save(newList);
+            if (response == true) {
+                if (selectedCalendar != null) {
+                    model.setValueAt(codeSelected, selectedRowIndex, 1);
+                    model.setValueAt(subjectSelected, selectedRowIndex, 2);
+                    model.setValueAt(room, selectedRowIndex, 3);
+                    model.setValueAt(classSelected, selectedRowIndex, 4);
+                } else {
+                    Integer i = 0;
+                    if (model.getRowCount() > 0) {
+                        i = Integer.parseInt(model.getValueAt(model.getRowCount() - 1, 0).toString());
                     }
-
-                    model.fireTableDataChanged();
-                    studentTable.repaint();
-                    rs = "Lưu thành công!";
-                    list = newList;
+                    model.addRow(new Object[]{
+                            ++i, codeSelected, subjectSelected, room, classSelected
+                    });
                 }
-            } else {
-                rs = "MSSV đã tồn tại!";
-                codeField.requestFocus();
+
+                model.fireTableDataChanged();
+                calendarTable.repaint();
+                rs = "Lưu thành công!";
+                list = newList;
             }
 
         }
@@ -278,10 +260,10 @@ public class StudentForm extends JPanel {
     private void delete() {
         String rs = "Có lỗi xảy ra!";
         if (clickListener.deleteClick()) {
-            List<Student> newList = new ArrayList<>();
-            if (selectedStudent != null) {
-                for (Student s : list) {
-                    if (!selectedStudent.getId().equals(s.getId())) {
+            List<Calendar> newList = new ArrayList<>();
+            if (selectedCalendar != null) {
+                for (Calendar s : list) {
+                    if (!selectedCalendar.getId().equals(s.getId())) {
                         newList.add(s);
                     }
                 }
@@ -291,7 +273,7 @@ public class StudentForm extends JPanel {
             if (response == true) {
                 model.removeRow(selectedRowIndex);
                 model.fireTableDataChanged();
-                studentTable.repaint();
+                calendarTable.repaint();
                 rs = "Xóa thành công!";
                 list = newList;
             }
@@ -318,7 +300,7 @@ public class StudentForm extends JPanel {
         String path = clickListener.importClick();
         if (path != null){
             String rs = "Có lỗi xảy ra!";
-            List<Student> response = controller.importFile(path);
+            List<Calendar> response = controller.importFile(path);
             if (response.size() > list.size()) {
                 list = response;
                 model.setRowCount(0);
@@ -327,24 +309,23 @@ public class StudentForm extends JPanel {
             }
             clickListener.showMessage(rs);
             this.loadClassList();
+            this.loadSubjectList();
             this.refresh();
         }
     }
 
     private void refresh() {
-        codeField.setText("");
-        nameField.setText("");
-        idField.setText("");
-        selectedStudent = null;
+        roomField.setText("");
+        selectedCalendar = null;
         selectedRowIndex = null;
-        studentTable.getSelectionModel().clearSelection();
-        codeField.requestFocus();
+        calendarTable.getSelectionModel().clearSelection();
+        roomField.requestFocus();
     }
 
     private void initComponents() {
         panel = new JPanel();
 
-        titleLabel = new JLabel("THÔNG TIN SINH VIÊN");
+        titleLabel = new JLabel("THỜI KHÓA BIỂU");
         titleLabel.setFont(new Font("Arial", 1, 24));
         titleLabel.setForeground(new Color(26316));
         titleLabel.setHorizontalAlignment(JLabel.CENTER);
@@ -355,10 +336,8 @@ public class StudentForm extends JPanel {
         importButton = new JButton("Nhập từ file ...");
         importButton.addActionListener(e -> importFile());
 
-        codeLabel = new JLabel("MSSV: ");
-        nameLabel = new JLabel("Họ tên: ");
-        genderLabel = new JLabel("Giới tính: ");
-        idLabel = new JLabel("CMND: ");
+        subjectLabel = new JLabel("Môn học: ");
+        roomLabel = new JLabel("Phòng: ");
         classLabel = new JLabel("Lớp: ");
 
         saveButton = new JButton("Lưu lại");
@@ -367,15 +346,11 @@ public class StudentForm extends JPanel {
         resetButton = new JButton("Nhập lại");
         resetButton.addActionListener(e -> refresh());
 
-        codeField = new JTextField();
-        nameField = new JTextField();
-        genderGroup = new ButtonGroup();
-        maleButton = new JRadioButton("Nam");
-        maleButton.setSelected(true);
-        femaleButton = new JRadioButton("Nữ");
-        genderGroup.add(maleButton);
-        genderGroup.add(femaleButton);
-        idField = new JTextField();
+        roomField = new JTextField();
+
+        subjectField = new JComboBox(new DefaultComboBoxModel(
+
+        ));
 
         classField = new JComboBox(new DefaultComboBoxModel(
 
@@ -391,14 +366,14 @@ public class StudentForm extends JPanel {
         searchField.getDocument().addDocumentListener(search());
 
         jScrollPane1 = new JScrollPane();
-        studentTable = new JTable();
-        studentTable.getTableHeader().setFont(new Font("Arial", Font.BOLD, 14));
-        studentTable.setModel(new DefaultTableModel(
+        calendarTable = new JTable();
+        calendarTable.getTableHeader().setFont(new Font("Arial", Font.BOLD, 14));
+        calendarTable.setModel(new DefaultTableModel(
                 new Object[][]{
 
                 },
                 new String[]{
-                        "STT", "MSSV", "Họ tên", "Giới tính", "CMND", "Lớp"
+                        "STT", "Mã môn", "Tên môn", "Phòng học", "Lớp"
                 }
         ) {
             @Override
@@ -407,7 +382,7 @@ public class StudentForm extends JPanel {
             }
         });
 
-        jScrollPane1.setViewportView(studentTable);
+        jScrollPane1.setViewportView(calendarTable);
 
         deleteButton = new JButton("Xóa");
         deleteButton.addActionListener(e -> delete());
@@ -436,21 +411,14 @@ public class StudentForm extends JPanel {
                                         .addGroup(layout.createSequentialGroup()
                                                 .addGap(18, 18, 18)
                                                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                                                        .addComponent(codeLabel)
-                                                        .addComponent(nameLabel)
-                                                        .addComponent(genderLabel)
-                                                        .addComponent(idLabel)
-                                                        .addComponent(classLabel))
+                                                        .addComponent(classLabel)
+                                                        .addComponent(subjectLabel)
+                                                        .addComponent(roomLabel))
                                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
                                                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-                                                        .addComponent(codeField)
-                                                        .addComponent(nameField)
-                                                        .addGroup(layout.createSequentialGroup()
-                                                                .addComponent(maleButton)
-                                                                .addComponent(femaleButton)
-                                                        )
-                                                        .addComponent(idField)
-                                                        .addComponent(classField, GroupLayout.PREFERRED_SIZE, 178, GroupLayout.PREFERRED_SIZE))
+                                                        .addComponent(classField)
+                                                        .addComponent(subjectField)
+                                                        .addComponent(roomField, GroupLayout.PREFERRED_SIZE, 178, GroupLayout.PREFERRED_SIZE))
                                                 .addGap(27, 27, 27))
                                         .addGroup(layout.createSequentialGroup()
                                                 .addGap(0, 0, Short.MAX_VALUE)
@@ -488,25 +456,16 @@ public class StudentForm extends JPanel {
                                                         .addComponent(importButton))
                                                 .addGap(18, 18, 18)
                                                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                                        .addComponent(codeLabel)
-                                                        .addComponent(codeField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                                                .addGap(18, 18, 18)
-                                                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                                        .addComponent(nameLabel)
-                                                        .addComponent(nameField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                                                .addGap(18, 18, 18)
-                                                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                                        .addComponent(genderLabel)
-                                                        .addComponent(maleButton)
-                                                        .addComponent(femaleButton, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                                                .addGap(18, 18, 18)
-                                                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                                        .addComponent(idLabel)
-                                                        .addComponent(idField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                                                .addGap(18, 18, 18)
-                                                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                                                         .addComponent(classLabel)
                                                         .addComponent(classField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                                                .addGap(18, 18, 18)
+                                                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                                        .addComponent(subjectLabel)
+                                                        .addComponent(subjectField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                                                .addGap(18, 18, 18)
+                                                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                                        .addComponent(roomLabel)
+                                                        .addComponent(roomField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
                                                 .addGap(25, 25, 25)
                                                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                                                         .addComponent(resetButton)

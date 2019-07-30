@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 public class Calendar implements Serializable {
     private Integer id;
+    private Classes classes;
     private Subject subject;
     private String room;
 
@@ -29,5 +30,17 @@ public class Calendar implements Serializable {
 
     public void setRoom(String room) {
         this.room = room;
+    }
+
+    public Classes getClasses() {
+        return classes;
+    }
+
+    public void setClasses(Classes classes) {
+        this.classes = classes;
+    }
+
+    public String toString() {
+        return this.getId() + "|" + this.getClasses().getId() + "|" + this.getSubject().getId() + "|" + this.getRoom();
     }
 }
