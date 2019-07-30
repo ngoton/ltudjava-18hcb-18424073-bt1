@@ -56,6 +56,19 @@ public class CalendarDaoImpl extends IOFileDao implements CalendarDao {
     }
 
     @Override
+    public Calendar getCalendarByName(String name){
+        List<Calendar> calendars = this.getList();
+        Calendar calendar = null;
+        for (Calendar s : calendars){
+            if (name.equals(s.getClasses().getName()+"-"+s.getSubject().getCode())){
+                calendar = s;
+                break;
+            }
+        }
+        return calendar;
+    }
+
+    @Override
     public boolean save(List<Calendar> calendars){
         StudentDao studentDao = new StudentDaoImpl();
         AttendanceDao attendanceDao = new AttendanceDaoImpl();
@@ -177,25 +190,34 @@ public class CalendarDaoImpl extends IOFileDao implements CalendarDao {
                     }
                 }
 
-                Calendar calendar = new Calendar();
-                calendar.setId(++lastCalendar);
-                calendar.setRoom(arr[3].trim());
-                calendar.setClasses(classes);
-                calendar.setSubject(subject);
-                newList.add(calendar);
-                list.add(calendar);
-
-                for (Student s : studentList){
-                    if (s.getStudentClass().getId().equals(classes.getId())){
-                        Attendance attendance = new Attendance();
-                        attendance.setId(++lastAttendance);
-                        attendance.setStudent(s);
-                        attendance.setCalendar(calendar);
-                        //attendanceDao.addOne(attendance);
-                        attendanceList.add(attendance);
+                boolean checkCode = true;
+                for (Calendar cl : list){
+                    if (classes.getId().equals(cl.getClasses().getId()) && subject.getId().equals(cl.getSubject().getId())){
+                        checkCode = false;
+                        break;
                     }
                 }
 
+                if (checkCode == true) {
+                    Calendar calendar = new Calendar();
+                    calendar.setId(++lastCalendar);
+                    calendar.setRoom(arr[3].trim());
+                    calendar.setClasses(classes);
+                    calendar.setSubject(subject);
+                    newList.add(calendar);
+                    list.add(calendar);
+
+                    for (Student s : studentList) {
+                        if (s.getStudentClass().getId().equals(classes.getId())) {
+                            Attendance attendance = new Attendance();
+                            attendance.setId(++lastAttendance);
+                            attendance.setStudent(s);
+                            attendance.setCalendar(calendar);
+                            //attendanceDao.addOne(attendance);
+                            attendanceList.add(attendance);
+                        }
+                    }
+                }
             }
             i++;
         }

@@ -7,6 +7,7 @@ import java.util.List;
 public interface CalendarDao {
     List<Calendar> getList();
     Calendar getCalendarById(Integer id);
+    Calendar getCalendarByName(String name);
     boolean save(List<Calendar> calendars);
     boolean deleteAll();
     List<Calendar> importFile(String path);

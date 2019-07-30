@@ -57,6 +57,19 @@ public class StudentDaoImpl extends IOFileDao implements StudentDao {
     }
 
     @Override
+    public Student getStudentByCode(String code){
+        List<Student> students = this.getList();
+        Student student = null;
+        for (Student s : students){
+            if (code.equals(s.getCode())){
+                student = s;
+                break;
+            }
+        }
+        return student;
+    }
+
+    @Override
     public boolean save(List<Student> students){
         List<User> users = userDao.getList();
         List<User> userList = new ArrayList<>();
@@ -159,25 +172,33 @@ public class StudentDaoImpl extends IOFileDao implements StudentDao {
             }
             else if (i > 1){
                 String code = arr[1].trim();
-                Student student = new Student();
-                student.setId(++lastStudent);
-                student.setCode(code);
-                student.setName(arr[2].trim());
-                student.setGender(arr[3].trim());
-                student.setIdNumber(arr[4].trim());
-                student.setStudentClass(classes);
-                newList.add(student);
-                list.add(student);
+                boolean checkCode = true;
+                for (Student st : list){
+                    if (st.getCode().equals(code)){
+                        checkCode = false;
+                        break;
+                    }
+                }
+                if (checkCode == true) {
+                    Student student = new Student();
+                    student.setId(++lastStudent);
+                    student.setCode(code);
+                    student.setName(arr[2].trim());
+                    student.setGender(arr[3].trim());
+                    student.setIdNumber(arr[4].trim());
+                    student.setStudentClass(classes);
+                    newList.add(student);
+                    list.add(student);
 
-                User user = new User();
-                user.setId(++lastUser);
-                user.setUsername(code);
-                user.setPassword(code);
-                user.setRole("USER");
-                user.setStudent(student);
-                userDao.addOne(user);
-                userList.add(user);
-
+                    User user = new User();
+                    user.setId(++lastUser);
+                    user.setUsername(code);
+                    user.setPassword(code);
+                    user.setRole("USER");
+                    user.setStudent(student);
+                    userDao.addOne(user);
+                    userList.add(user);
+                }
             }
             i++;
         }
