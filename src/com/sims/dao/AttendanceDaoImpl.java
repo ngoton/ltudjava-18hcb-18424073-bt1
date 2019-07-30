@@ -25,14 +25,13 @@ public class AttendanceDaoImpl extends IOFileDao implements AttendanceDao {
             Attendance attendance = new Attendance();
             attendance.setId(Integer.parseInt(arr[0]));
 
-            Calendar calendar = calendarDao.getCalendarById(Integer.parseInt(arr[1]));
-            if (calendar != null){
-                attendance.setCalendar(calendar);
-            }
-
-            Student student = studentDao.getStudentById(Integer.parseInt(arr[2]));
+            Student student = studentDao.getStudentById(Integer.parseInt(arr[1]));
             if (student != null){
                 attendance.setStudent(student);
+            }
+            Calendar calendar = calendarDao.getCalendarById(Integer.parseInt(arr[2]));
+            if (calendar != null){
+                attendance.setCalendar(calendar);
             }
 
             list.add(attendance);
@@ -55,7 +54,7 @@ public class AttendanceDaoImpl extends IOFileDao implements AttendanceDao {
     }
 
     @Override
-    public List<Attendance> getAttenddanceByCalendar(Calendar calendar){
+    public List<Attendance> getAttendanceByCalendar(Calendar calendar){
         List<Attendance> attendances = getList();
         List<Attendance> attendanceList = new ArrayList<>();
         for (Attendance a : attendances){

@@ -207,6 +207,7 @@ public class AttendanceForm extends JPanel {
         String nameSelected = "";
         String genderSelected = "";
         String idSelected = "";
+        boolean checkId = true;
 
         List<Attendance> newList = new ArrayList<>();
         Calendar calendar = new Calendar();
@@ -236,47 +237,65 @@ public class AttendanceForm extends JPanel {
                 if (selectedAttendance.getId().equals(s.getId())) {
                     newList.add(selectedAttendance);
                 } else {
+                    if (studentSelected.equals(s.getStudent().getName()) && calendarSelected.equals(s.getCalendar().getClasses().getName()+"-"+s.getCalendar().getSubject().getCode())) {
+                        checkId = false;
+                        break;
+                    }
                     newList.add(s);
                 }
             }
         } else {
-            newList = list;
-            Integer lastId = 0;
-            if (list.size() > 0) {
-                lastId = list.get(list.size() - 1).getId();
+            for (Attendance s : list) {
+                if (studentSelected.equals(s.getStudent().getName()) && calendarSelected.equals(s.getCalendar().getClasses().getName()+"-"+s.getCalendar().getSubject().getCode())) {
+                    checkId = false;
+                    break;
+                }
             }
-            Attendance newAttendance = new Attendance();
-            newAttendance.setId(++lastId);
-            newAttendance.setStudent(student);
-            newAttendance.setCalendar(calendar);
-            newList.add(newAttendance);
+            if (checkId == true) {
+                newList = list;
+                Integer lastId = 0;
+                if (list.size() > 0) {
+                    lastId = list.get(list.size() - 1).getId();
+                }
+                Attendance newAttendance = new Attendance();
+                newAttendance.setId(++lastId);
+                newAttendance.setStudent(student);
+                newAttendance.setCalendar(calendar);
+                newList.add(newAttendance);
+            }
         }
 
-        boolean response = controller.save(newList);
-        if (response == true) {
-            if (selectedAttendance != null) {
-                model.setValueAt(codeSelected, selectedRowIndex, 1);
-                model.setValueAt(nameSelected, selectedRowIndex, 2);
-                model.setValueAt(genderSelected, selectedRowIndex, 3);
-                model.setValueAt(idSelected, selectedRowIndex, 4);
-                model.setValueAt(calendarSelected, selectedRowIndex, 5);
-            } else {
-                Integer i = 0;
-                if (model.getRowCount() > 0) {
-                    i = Integer.parseInt(model.getValueAt(model.getRowCount() - 1, 0).toString());
+        if (checkId == true) {
+            boolean response = controller.save(newList);
+            if (response == true) {
+                if (selectedAttendance != null) {
+                    model.setValueAt(codeSelected, selectedRowIndex, 1);
+                    model.setValueAt(nameSelected, selectedRowIndex, 2);
+                    model.setValueAt(genderSelected, selectedRowIndex, 3);
+                    model.setValueAt(idSelected, selectedRowIndex, 4);
+                    model.setValueAt(calendarSelected, selectedRowIndex, 5);
+                } else {
+                    Integer i = 0;
+                    if (model.getRowCount() > 0) {
+                        i = Integer.parseInt(model.getValueAt(model.getRowCount() - 1, 0).toString());
+                    }
+                    model.addRow(new Object[]{
+                            ++i, codeSelected, nameSelected, genderSelected, idSelected, calendarSelected
+                    });
                 }
-                model.addRow(new Object[]{
-                        ++i, codeSelected, nameSelected, genderSelected, idSelected, calendarSelected
-                });
-            }
 
-            model.fireTableDataChanged();
-            attendanceTable.repaint();
-            rs = "Lưu thành công!";
-            list = newList;
+                model.fireTableDataChanged();
+                attendanceTable.repaint();
+                rs = "Lưu thành công!";
+                list = newList;
+            }
+        }
+        else {
+            rs = "Sinh viên đã tồn tại!";
         }
 
         clickListener.showMessage(rs);
+        this.refresh();
     }
 
     private void delete() {

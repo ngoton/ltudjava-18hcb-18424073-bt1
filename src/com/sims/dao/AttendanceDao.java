@@ -8,7 +8,7 @@ import java.util.List;
 public interface AttendanceDao {
     List<Attendance> getList();
     Attendance getAttendanceById(Integer id);
-    List<Attendance> getAttenddanceByCalendar(Calendar calendar);
+    List<Attendance> getAttendanceByCalendar(Calendar calendar);
     boolean save(List<Attendance> attendances);
     boolean addOne(Attendance attendances);
     boolean deleteAll();

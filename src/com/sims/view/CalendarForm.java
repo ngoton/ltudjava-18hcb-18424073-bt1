@@ -187,6 +187,7 @@ public class CalendarForm extends JPanel {
             rs = "Vui lòng nhập vào Phòng học!";
             roomField.requestFocus();
         } else {
+            boolean checkId = true;
             List<Calendar> newList = new ArrayList<>();
             Classes classes = new Classes();
             for (Classes c : classList) {
@@ -212,49 +213,67 @@ public class CalendarForm extends JPanel {
                     if (selectedCalendar.getId().equals(s.getId())) {
                         newList.add(selectedCalendar);
                     } else {
+                        if (classSelected.equals(s.getClasses().getName()) && subjectSelected.equals(s.getSubject().getName())) {
+                            checkId = false;
+                            break;
+                        }
                         newList.add(s);
                     }
                 }
             } else {
-                newList = list;
-                Integer lastId = 0;
-                if (list.size() > 0) {
-                    lastId = list.get(list.size() - 1).getId();
+                for (Calendar s : list) {
+                    if (classSelected.equals(s.getClasses().getName()) && subjectSelected.equals(s.getSubject().getName())) {
+                        checkId = false;
+                        break;
+                    }
                 }
-                Calendar newCalendar = new Calendar();
-                newCalendar.setId(++lastId);
-                newCalendar.setRoom(room);
-                newCalendar.setSubject(subject);
-                newCalendar.setClasses(classes);
-                newList.add(newCalendar);
+                if (checkId == true) {
+                    newList = list;
+                    Integer lastId = 0;
+                    if (list.size() > 0) {
+                        lastId = list.get(list.size() - 1).getId();
+                    }
+                    Calendar newCalendar = new Calendar();
+                    newCalendar.setId(++lastId);
+                    newCalendar.setRoom(room);
+                    newCalendar.setSubject(subject);
+                    newCalendar.setClasses(classes);
+                    newList.add(newCalendar);
+                }
             }
 
-            boolean response = controller.save(newList);
-            if (response == true) {
-                if (selectedCalendar != null) {
-                    model.setValueAt(codeSelected, selectedRowIndex, 1);
-                    model.setValueAt(subjectSelected, selectedRowIndex, 2);
-                    model.setValueAt(room, selectedRowIndex, 3);
-                    model.setValueAt(classSelected, selectedRowIndex, 4);
-                } else {
-                    Integer i = 0;
-                    if (model.getRowCount() > 0) {
-                        i = Integer.parseInt(model.getValueAt(model.getRowCount() - 1, 0).toString());
+            if (checkId == true) {
+                boolean response = controller.save(newList);
+                if (response == true) {
+                    if (selectedCalendar != null) {
+                        model.setValueAt(codeSelected, selectedRowIndex, 1);
+                        model.setValueAt(subjectSelected, selectedRowIndex, 2);
+                        model.setValueAt(room, selectedRowIndex, 3);
+                        model.setValueAt(classSelected, selectedRowIndex, 4);
+                    } else {
+                        Integer i = 0;
+                        if (model.getRowCount() > 0) {
+                            i = Integer.parseInt(model.getValueAt(model.getRowCount() - 1, 0).toString());
+                        }
+                        model.addRow(new Object[]{
+                                ++i, codeSelected, subjectSelected, room, classSelected
+                        });
                     }
-                    model.addRow(new Object[]{
-                            ++i, codeSelected, subjectSelected, room, classSelected
-                    });
-                }
 
-                model.fireTableDataChanged();
-                calendarTable.repaint();
-                rs = "Lưu thành công!";
-                list = newList;
+                    model.fireTableDataChanged();
+                    calendarTable.repaint();
+                    rs = "Lưu thành công!";
+                    list = newList;
+                }
+            }
+            else {
+                rs = "Thời khóa biểu đã tồn tại!";
             }
 
         }
 
         clickListener.showMessage(rs);
+        this.refresh();
     }
 
     private void delete() {

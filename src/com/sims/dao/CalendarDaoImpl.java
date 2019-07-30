@@ -67,7 +67,7 @@ public class CalendarDaoImpl extends IOFileDao implements CalendarDao {
             lastId = attendances.get(attendances.size() - 1).getId();
         }
         for (Calendar c : calendars){
-            List<Attendance> list = attendanceDao.getAttenddanceByCalendar(c);
+            List<Attendance> list = attendanceDao.getAttendanceByCalendar(c);
             if (list == null || list.size() == 0){
                 for (Student s : studentList) {
                     if (s.getStudentClass().getId().equals(c.getClasses().getId())) {
@@ -191,7 +191,7 @@ public class CalendarDaoImpl extends IOFileDao implements CalendarDao {
                         attendance.setId(++lastAttendance);
                         attendance.setStudent(s);
                         attendance.setCalendar(calendar);
-                        attendanceDao.addOne(attendance);
+                        //attendanceDao.addOne(attendance);
                         attendanceList.add(attendance);
                     }
                 }
@@ -199,6 +199,8 @@ public class CalendarDaoImpl extends IOFileDao implements CalendarDao {
             }
             i++;
         }
+
+        attendanceDao.save(attendanceList);
 
         writeFile(newList, calendarFile, true);
 

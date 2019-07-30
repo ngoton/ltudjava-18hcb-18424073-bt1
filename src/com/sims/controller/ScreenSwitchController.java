@@ -1,6 +1,7 @@
 package com.sims.controller;
 
 import com.sims.bean.MenuBean;
+import com.sims.view.AttendanceForm;
 import com.sims.view.LoginForm;
 
 import javax.swing.*;
@@ -37,8 +38,13 @@ public class ScreenSwitchController {
                 }
                 else {
                     panel.removeAll();
+                    JPanel p = item.getPanel();
+                    if (item.getName().equals("attendance")){
+                        AttendanceForm attendanceForm = new AttendanceForm();
+                        p = attendanceForm;
+                    }
                     panel.add(toolBar, BorderLayout.PAGE_START);
-                    panel.add(item.getPanel(), BorderLayout.CENTER);
+                    panel.add(p, BorderLayout.CENTER);
                     previousButton.setForeground(Color.BLACK);
                     item.getButton().setForeground(new Color(26316));
                     previousButton = item.getButton();

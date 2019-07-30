@@ -273,6 +273,7 @@ public class StudentForm extends JPanel {
         }
 
         clickListener.showMessage(rs);
+        this.refresh();
     }
 
     private void delete() {
