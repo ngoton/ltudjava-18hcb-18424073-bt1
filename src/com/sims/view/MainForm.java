@@ -17,6 +17,7 @@ public class MainForm extends JFrame {
     private JPanel mainPanel = new JPanel();
     private StudentForm studentPanel = new StudentForm();
     private CalendarForm calendarPanel = new CalendarForm();
+    private AttendanceForm attendancePanel = new AttendanceForm();
     private ChangePassForm changePassPanel;
 
     public MainForm(boolean isAdmin, User user){
@@ -89,7 +90,7 @@ public class MainForm extends JFrame {
 
         JButton studentButton = new JButton("Quản lý sinh viên");
         JButton calendarButton = new JButton("Thời khóa biểu");
-        JButton classButton = new JButton("Danh sách lớp");
+        JButton attendanceButton = new JButton("Danh sách lớp");
         JButton transcriptButton = new JButton("Điểm thi");
         JButton changePassButton = new JButton("Đổi mật khẩu");
 
@@ -99,7 +100,7 @@ public class MainForm extends JFrame {
         JToolBar toolBar = new JToolBar();
         toolBar.add(studentButton);
         toolBar.add(calendarButton);
-        toolBar.add(classButton);
+        toolBar.add(attendanceButton);
         toolBar.add(transcriptButton);
         toolBar.add(changePassButton);
         toolBar.add(Box.createHorizontalGlue());
@@ -111,7 +112,8 @@ public class MainForm extends JFrame {
 
         List<MenuBean> menuList = new ArrayList<>();
         menuList.add(new MenuBean(studentPanel, studentButton, "student"));
-        menuList.add(new MenuBean(calendarPanel, calendarButton, "student"));
+        menuList.add(new MenuBean(calendarPanel, calendarButton, "calendar"));
+        menuList.add(new MenuBean(attendancePanel, attendanceButton, "attendance"));
         menuList.add(new MenuBean(changePassPanel, changePassButton, "changepass"));
         menuList.add(new MenuBean(null, loginButton, "login"));
 

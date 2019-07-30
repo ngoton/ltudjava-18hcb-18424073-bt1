@@ -1,9 +1,8 @@
 package com.sims.view;
 
+import com.sims.controller.AttendanceController;
 import com.sims.controller.CalendarController;
-import com.sims.model.Calendar;
-import com.sims.model.Classes;
-import com.sims.model.Subject;
+import com.sims.model.*;
 import com.sims.util.ClickListener;
 
 import javax.swing.*;
@@ -19,119 +18,135 @@ import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CalendarForm extends JPanel {
-    private CalendarController controller;
+public class AttendanceForm extends JPanel {
+    private AttendanceController controller;
     private ClickListener clickListener;
-    private List<Calendar> list;
+    private List<Attendance> list;
     DefaultTableModel model;
+    private List<Calendar> calendarList;
+    DefaultComboBoxModel calendarFieldModel;
+    DefaultComboBoxModel calendarBoxModel;
+    private List<Student> studentList;
+    DefaultComboBoxModel studentFieldModel;
     private List<Classes> classList;
-    DefaultComboBoxModel classFieldModel;
     DefaultComboBoxModel classBoxModel;
-    private List<Subject> subjectList;
-    DefaultComboBoxModel subjectFieldModel;
     private JPanel panel;
     private JButton addButton;
-    private JButton importButton;
     private JButton saveButton;
     private JButton resetButton;
     private JLabel titleLabel;
-    private JLabel subjectLabel;
-    private JLabel roomLabel;
-    private JLabel classLabel;
+    private JLabel studentLabel;
+    private JLabel calendarLabel;
+    private JComboBox calendarBox;
     private JComboBox classBox;
     private JScrollPane jScrollPane1;
-    private JTable calendarTable;
-    private JComboBox subjectField;
-    private JTextField roomField;
-    private JComboBox classField;
+    private JTable attendanceTable;
+    private JComboBox studentField;
+    private JComboBox calendarField;
     private JTextField searchField;
     private JButton deleteButton;
     private JButton removeButton;
 
     private TableRowSorter<TableModel> rowSorter;
-    private Calendar selectedCalendar;
+    private Attendance selectedAttendance;
     private Integer selectedRowIndex;
 
-    public CalendarForm() {
+    public AttendanceForm() {
         initComponents();
         clickListener = new ClickListener();
-        this.controller = new CalendarController(this);
+        this.controller = new AttendanceController(this);
         this.list = controller.getList();
-        loadSubjectList();
         loadClassList();
-        this.model = (DefaultTableModel) calendarTable.getModel();
+        loadCalendarList();
+        loadStudentList();
+        this.model = (DefaultTableModel) attendanceTable.getModel();
         showDataTable();
     }
 
-    private void loadSubjectList(){
-        this.subjectField.setModel(new DefaultComboBoxModel());
-        this.subjectList = controller.getSubjectList();
-        this.subjectFieldModel = (DefaultComboBoxModel) subjectField.getModel();
-        addToSubjectBox();
+    private void loadStudentList(){
+        this.studentField.setModel(new DefaultComboBoxModel());
+        this.studentList = controller.getStudentList();
+        this.studentFieldModel = (DefaultComboBoxModel) studentField.getModel();
+        addToStudentBox();
     }
 
-    private void addToSubjectBox() {
-        for (Subject subject : subjectList) {
-            subjectFieldModel.addElement(subject.getName());
+    private void addToStudentBox() {
+        for (Student student : studentList) {
+            studentFieldModel.addElement(student.getName());
         }
-        subjectField.setModel(subjectFieldModel);
+        studentField.setModel(studentFieldModel);
+    }
+
+    private void loadCalendarList(){
+        this.calendarField.setModel(new DefaultComboBoxModel());
+        this.calendarBox.setModel(new DefaultComboBoxModel(
+                new Object[]{"Tất cả"}
+        ));
+        this.calendarList = controller.getCalendarList();
+        this.calendarBoxModel = (DefaultComboBoxModel) calendarBox.getModel();
+        this.calendarFieldModel = (DefaultComboBoxModel) calendarField.getModel();
+        addToCalendarBox();
+    }
+
+    private void addToCalendarBox() {
+        for (Calendar calendar : calendarList) {
+            calendarBoxModel.addElement(calendar.getClasses().getName()+"-"+calendar.getSubject().getCode());
+            calendarFieldModel.addElement(calendar.getClasses().getName()+"-"+calendar.getSubject().getCode());
+        }
+        calendarField.setModel(calendarFieldModel);
+        calendarBox.setModel(calendarBoxModel);
     }
 
     private void loadClassList(){
-        this.classField.setModel(new DefaultComboBoxModel());
         this.classBox.setModel(new DefaultComboBoxModel(
                 new Object[]{"Tất cả"}
         ));
         this.classList = controller.getClassList();
         this.classBoxModel = (DefaultComboBoxModel) classBox.getModel();
-        this.classFieldModel = (DefaultComboBoxModel) classField.getModel();
         addToClassBox();
     }
 
     private void addToClassBox() {
         for (Classes classes : classList) {
             classBoxModel.addElement(classes.getName());
-            classFieldModel.addElement(classes.getName());
         }
-        classField.setModel(classFieldModel);
         classBox.setModel(classBoxModel);
     }
 
     private void showDataTable() {
         model.setColumnIdentifiers(new Object[]{
-                "STT", "Mã môn", "Tên môn", "Phòng học", "Lớp"
+                "STT", "MSSV", "Họ tên", "Giới tính", "CMND", "Lớp"
         });
         int i = 1;
-        for (Calendar calendar : list) {
+        for (Attendance attendance : list) {
             model.addRow(new Object[]{
-                    i++, calendar.getSubject().getCode(), calendar.getSubject().getName(), calendar.getRoom(), calendar.getClasses().getName()
+                    i++, attendance.getStudent().getCode(), attendance.getStudent().getName(), attendance.getStudent().getGender(), attendance.getStudent().getIdNumber(), attendance.getCalendar().getClasses().getName()+"-"+attendance.getCalendar().getSubject().getCode(),
             });
         }
 
-        rowSorter = new TableRowSorter<>(calendarTable.getModel());
-        calendarTable.setRowSorter(rowSorter);
+        rowSorter = new TableRowSorter<>(attendanceTable.getModel());
+        attendanceTable.setRowSorter(rowSorter);
 
         DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
         centerRenderer.setHorizontalAlignment(JLabel.CENTER);
-        calendarTable.getColumnModel().getColumn(0).setCellRenderer(centerRenderer);
-        calendarTable.getColumnModel().getColumn(0).setPreferredWidth(20);
-        calendarTable.addMouseListener(getDataRow());
+        attendanceTable.getColumnModel().getColumn(0).setCellRenderer(centerRenderer);
+        attendanceTable.getColumnModel().getColumn(0).setPreferredWidth(20);
+        attendanceTable.addMouseListener(getDataRow());
     }
 
     private MouseAdapter getDataRow() {
         return (new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                if (e.getClickCount() == 1 && calendarTable.getSelectedRow() != -1) {
-                    DefaultTableModel model = (DefaultTableModel) calendarTable.getModel();
-                    selectedRowIndex = calendarTable.getSelectedRow();
-                    selectedRowIndex = calendarTable.convertRowIndexToModel(selectedRowIndex);
+                if (e.getClickCount() == 1 && attendanceTable.getSelectedRow() != -1) {
+                    DefaultTableModel model = (DefaultTableModel) attendanceTable.getModel();
+                    selectedRowIndex = attendanceTable.getSelectedRow();
+                    selectedRowIndex = attendanceTable.convertRowIndexToModel(selectedRowIndex);
 
-                    selectedCalendar = list.get(selectedRowIndex);
+                    selectedAttendance = list.get(selectedRowIndex);
 
-                    subjectField.setSelectedItem(model.getValueAt(selectedRowIndex, 2).toString());
-                    roomField.setText(model.getValueAt(selectedRowIndex, 3).toString());
-                    classField.setSelectedItem(model.getValueAt(selectedRowIndex, 4).toString());
+                    studentField.setSelectedItem(model.getValueAt(selectedRowIndex, 2).toString());
+                    calendarField.setSelectedItem(model.getValueAt(selectedRowIndex, 5).toString());
 
                 }
             }
@@ -168,6 +183,14 @@ public class CalendarForm extends JPanel {
     }
 
     private void filter() {
+        String text = calendarBox.getSelectedItem().toString();
+        if (text.equals("Tất cả")) {
+            rowSorter.setRowFilter(null);
+        } else {
+            rowSorter.setRowFilter(RowFilter.regexFilter("(?i)" + text));
+        }
+    }
+    private void filterClass() {
         String text = classBox.getSelectedItem().toString();
         if (text.equals("Tất cả")) {
             rowSorter.setRowFilter(null);
@@ -178,80 +201,79 @@ public class CalendarForm extends JPanel {
 
     private void save() {
         String rs = "Lưu thất bại!";
-        String room = roomField.getText().trim();
-        String classSelected = classField.getSelectedItem().toString();
-        String subjectSelected = subjectField.getSelectedItem().toString();
+        String calendarSelected = calendarField.getSelectedItem().toString();
+        String studentSelected = studentField.getSelectedItem().toString();
         String codeSelected = "";
+        String nameSelected = "";
+        String genderSelected = "";
+        String idSelected = "";
 
-        if (room.isEmpty()) {
-            rs = "Vui lòng nhập vào Phòng học!";
-            roomField.requestFocus();
-        } else {
-            List<Calendar> newList = new ArrayList<>();
-            Classes classes = new Classes();
-            for (Classes c : classList) {
-                if (c.getName().equals(classSelected)) {
-                    classes = c;
-                    break;
-                }
+        List<Attendance> newList = new ArrayList<>();
+        Calendar calendar = new Calendar();
+        for (Calendar c : calendarList) {
+            String cl = c.getClasses().getName()+"-"+c.getSubject().getCode();
+            if (cl.equals(calendarSelected)) {
+                calendar = c;
+                break;
             }
-            Subject subject = new Subject();
-            for (Subject sj : subjectList) {
-                if (sj.getName().equals(subjectSelected)) {
-                    subject = sj;
-                    codeSelected = sj.getCode();
-                    break;
-                }
+        }
+        Student student = new Student();
+        for (Student s : studentList) {
+            if (s.getName().equals(studentSelected)) {
+                student = s;
+                codeSelected = s.getCode();
+                nameSelected = s.getName();
+                genderSelected = s.getGender();
+                idSelected = s.getIdNumber();
+                break;
             }
-            if (selectedCalendar != null) {
-                selectedCalendar.setRoom(room);
-                selectedCalendar.setClasses(classes);
-                selectedCalendar.setSubject(subject);
+        }
+        if (selectedAttendance != null) {
+            selectedAttendance.setCalendar(calendar);
+            selectedAttendance.setStudent(student);
 
-                for (Calendar s : list) {
-                    if (selectedCalendar.getId().equals(s.getId())) {
-                        newList.add(selectedCalendar);
-                    } else {
-                        newList.add(s);
-                    }
-                }
-            } else {
-                newList = list;
-                Integer lastId = 0;
-                if (list.size() > 0) {
-                    lastId = list.get(list.size() - 1).getId();
-                }
-                Calendar newCalendar = new Calendar();
-                newCalendar.setId(++lastId);
-                newCalendar.setRoom(room);
-                newCalendar.setSubject(subject);
-                newCalendar.setClasses(classes);
-                newList.add(newCalendar);
-            }
-
-            boolean response = controller.save(newList);
-            if (response == true) {
-                if (selectedCalendar != null) {
-                    model.setValueAt(codeSelected, selectedRowIndex, 1);
-                    model.setValueAt(subjectSelected, selectedRowIndex, 2);
-                    model.setValueAt(room, selectedRowIndex, 3);
-                    model.setValueAt(classSelected, selectedRowIndex, 4);
+            for (Attendance s : list) {
+                if (selectedAttendance.getId().equals(s.getId())) {
+                    newList.add(selectedAttendance);
                 } else {
-                    Integer i = 0;
-                    if (model.getRowCount() > 0) {
-                        i = Integer.parseInt(model.getValueAt(model.getRowCount() - 1, 0).toString());
-                    }
-                    model.addRow(new Object[]{
-                            ++i, codeSelected, subjectSelected, room, classSelected
-                    });
+                    newList.add(s);
                 }
+            }
+        } else {
+            newList = list;
+            Integer lastId = 0;
+            if (list.size() > 0) {
+                lastId = list.get(list.size() - 1).getId();
+            }
+            Attendance newAttendance = new Attendance();
+            newAttendance.setId(++lastId);
+            newAttendance.setStudent(student);
+            newAttendance.setCalendar(calendar);
+            newList.add(newAttendance);
+        }
 
-                model.fireTableDataChanged();
-                calendarTable.repaint();
-                rs = "Lưu thành công!";
-                list = newList;
+        boolean response = controller.save(newList);
+        if (response == true) {
+            if (selectedAttendance != null) {
+                model.setValueAt(codeSelected, selectedRowIndex, 1);
+                model.setValueAt(nameSelected, selectedRowIndex, 2);
+                model.setValueAt(genderSelected, selectedRowIndex, 3);
+                model.setValueAt(idSelected, selectedRowIndex, 4);
+                model.setValueAt(calendarSelected, selectedRowIndex, 5);
+            } else {
+                Integer i = 0;
+                if (model.getRowCount() > 0) {
+                    i = Integer.parseInt(model.getValueAt(model.getRowCount() - 1, 0).toString());
+                }
+                model.addRow(new Object[]{
+                        ++i, codeSelected, nameSelected, genderSelected, idSelected, calendarSelected
+                });
             }
 
+            model.fireTableDataChanged();
+            attendanceTable.repaint();
+            rs = "Lưu thành công!";
+            list = newList;
         }
 
         clickListener.showMessage(rs);
@@ -260,10 +282,10 @@ public class CalendarForm extends JPanel {
     private void delete() {
         String rs = "Có lỗi xảy ra!";
         if (clickListener.deleteClick()) {
-            List<Calendar> newList = new ArrayList<>();
-            if (selectedCalendar != null) {
-                for (Calendar s : list) {
-                    if (!selectedCalendar.getId().equals(s.getId())) {
+            List<Attendance> newList = new ArrayList<>();
+            if (selectedAttendance != null) {
+                for (Attendance s : list) {
+                    if (!selectedAttendance.getId().equals(s.getId())) {
                         newList.add(s);
                     }
                 }
@@ -273,7 +295,7 @@ public class CalendarForm extends JPanel {
             if (response == true) {
                 model.removeRow(selectedRowIndex);
                 model.fireTableDataChanged();
-                calendarTable.repaint();
+                attendanceTable.repaint();
                 rs = "Xóa thành công!";
                 list = newList;
             }
@@ -296,36 +318,18 @@ public class CalendarForm extends JPanel {
         }
     }
 
-    private void importFile() {
-        String path = clickListener.importClick();
-        if (path != null){
-            String rs = "Có lỗi xảy ra!";
-            List<Calendar> response = controller.importFile(path);
-            if (response.size() > list.size()) {
-                list = response;
-                model.setRowCount(0);
-                showDataTable();
-                rs = "Cập nhật thành công!";
-            }
-            clickListener.showMessage(rs);
-            this.loadClassList();
-            this.loadSubjectList();
-            this.refresh();
-        }
-    }
+
 
     private void refresh() {
-        roomField.setText("");
-        selectedCalendar = null;
+        selectedAttendance = null;
         selectedRowIndex = null;
-        calendarTable.getSelectionModel().clearSelection();
-        roomField.requestFocus();
+        attendanceTable.getSelectionModel().clearSelection();
     }
 
     private void initComponents() {
         panel = new JPanel();
 
-        titleLabel = new JLabel("THỜI KHÓA BIỂU");
+        titleLabel = new JLabel("DANH SÁCH LỚP");
         titleLabel.setFont(new Font("Arial", 1, 24));
         titleLabel.setForeground(new Color(26316));
         titleLabel.setHorizontalAlignment(JLabel.CENTER);
@@ -333,12 +337,9 @@ public class CalendarForm extends JPanel {
         addButton = new JButton("+ Thêm mới");
         addButton.addActionListener(e -> refresh());
 
-        importButton = new JButton("Nhập từ file ...");
-        importButton.addActionListener(e -> importFile());
 
-        subjectLabel = new JLabel("Môn học: ");
-        roomLabel = new JLabel("Phòng: ");
-        classLabel = new JLabel("Lớp: ");
+        studentLabel = new JLabel("Sinh viên: ");
+        calendarLabel = new JLabel("Lớp: ");
 
         saveButton = new JButton("Lưu lại");
         saveButton.addActionListener(e -> save());
@@ -346,13 +347,12 @@ public class CalendarForm extends JPanel {
         resetButton = new JButton("Nhập lại");
         resetButton.addActionListener(e -> refresh());
 
-        roomField = new JTextField();
 
-        subjectField = new JComboBox(new DefaultComboBoxModel(
+        studentField = new JComboBox(new DefaultComboBoxModel(
 
         ));
 
-        classField = new JComboBox(new DefaultComboBoxModel(
+        calendarField = new JComboBox(new DefaultComboBoxModel(
 
         ));
 
@@ -360,20 +360,26 @@ public class CalendarForm extends JPanel {
         classBox.setModel(new DefaultComboBoxModel(
                 new Object[]{"Tất cả"}
         ));
-        classBox.addActionListener(e -> filter());
+        classBox.addActionListener(e -> filterClass());
+
+        calendarBox = new JComboBox();
+        calendarBox.setModel(new DefaultComboBoxModel(
+                new Object[]{"Tất cả"}
+        ));
+        calendarBox.addActionListener(e -> filter());
 
         searchField = new JTextField();
         searchField.getDocument().addDocumentListener(search());
 
         jScrollPane1 = new JScrollPane();
-        calendarTable = new JTable();
-        calendarTable.getTableHeader().setFont(new Font("Arial", Font.BOLD, 14));
-        calendarTable.setModel(new DefaultTableModel(
+        attendanceTable = new JTable();
+        attendanceTable.getTableHeader().setFont(new Font("Arial", Font.BOLD, 14));
+        attendanceTable.setModel(new DefaultTableModel(
                 new Object[][]{
 
                 },
                 new String[]{
-                        "STT", "Mã môn", "Tên môn", "Phòng học", "Lớp"
+                        "STT", "MSSV", "Họ tên", "Giới tính", "CMND", "Lớp"
                 }
         ) {
             @Override
@@ -382,7 +388,7 @@ public class CalendarForm extends JPanel {
             }
         });
 
-        jScrollPane1.setViewportView(calendarTable);
+        jScrollPane1.setViewportView(attendanceTable);
 
         deleteButton = new JButton("Xóa");
         deleteButton.addActionListener(e -> delete());
@@ -406,19 +412,16 @@ public class CalendarForm extends JPanel {
                                         .addGroup(layout.createSequentialGroup()
                                                 .addGap(18, 18, 18)
                                                 .addComponent(addButton)
-                                                .addComponent(importButton)
                                         )
                                         .addGroup(layout.createSequentialGroup()
                                                 .addGap(18, 18, 18)
                                                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                                                        .addComponent(classLabel)
-                                                        .addComponent(subjectLabel)
-                                                        .addComponent(roomLabel))
+                                                        .addComponent(calendarLabel)
+                                                        .addComponent(studentLabel))
                                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
                                                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-                                                        .addComponent(classField)
-                                                        .addComponent(subjectField)
-                                                        .addComponent(roomField, GroupLayout.PREFERRED_SIZE, 178, GroupLayout.PREFERRED_SIZE))
+                                                        .addComponent(calendarField)
+                                                        .addComponent(studentField, GroupLayout.PREFERRED_SIZE, 178, GroupLayout.PREFERRED_SIZE))
                                                 .addGap(27, 27, 27))
                                         .addGroup(layout.createSequentialGroup()
                                                 .addGap(18, 18, 18)
@@ -431,7 +434,8 @@ public class CalendarForm extends JPanel {
                                         .addComponent(titleLabel)
                                         .addGroup(layout.createSequentialGroup()
                                                 .addComponent(classBox, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
-                                                .addGap(300, 300, 300)
+                                                .addComponent(calendarBox, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
+                                                .addGap(200, 200, 200)
                                                 .addComponent(searchField)
                                         )
                                         .addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 700, GroupLayout.PREFERRED_SIZE)
@@ -452,20 +456,15 @@ public class CalendarForm extends JPanel {
                                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                                         .addGroup(layout.createSequentialGroup()
                                                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                                        .addComponent(addButton)
-                                                        .addComponent(importButton))
+                                                        .addComponent(addButton))
                                                 .addGap(18, 18, 18)
                                                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                                        .addComponent(classLabel)
-                                                        .addComponent(classField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                                                        .addComponent(calendarLabel)
+                                                        .addComponent(calendarField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
                                                 .addGap(18, 18, 18)
                                                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                                        .addComponent(subjectLabel)
-                                                        .addComponent(subjectField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                                                .addGap(18, 18, 18)
-                                                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                                        .addComponent(roomLabel)
-                                                        .addComponent(roomField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                                                        .addComponent(studentLabel)
+                                                        .addComponent(studentField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
                                                 .addGap(25, 25, 25)
                                                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                                                         .addComponent(resetButton)
@@ -475,6 +474,7 @@ public class CalendarForm extends JPanel {
                                                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                                                         .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                                                                 .addComponent(classBox)
+                                                                .addComponent(calendarBox)
                                                                 .addComponent(searchField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 
                                                         )

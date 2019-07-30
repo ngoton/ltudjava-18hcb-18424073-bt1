@@ -62,6 +62,8 @@ public class CalendarDaoImpl extends IOFileDao implements CalendarDao {
 
     @Override
     public boolean deleteAll(){
+        AttendanceDao attendanceDao = new AttendanceDaoImpl();
+        attendanceDao.deleteAll();
         return writeFile(null, calendarFile, false);
     }
 
@@ -76,6 +78,15 @@ public class CalendarDaoImpl extends IOFileDao implements CalendarDao {
         if (list.size() > 0) {
             lastCalendar = list.get(list.size() - 1).getId();
         }
+        AttendanceDao attendanceDao = new AttendanceDaoImpl();
+        List<Attendance> attendanceList = attendanceDao.getList();
+        Integer lastAttendance = 0;
+        if (attendanceList.size() > 0) {
+            lastAttendance = attendanceList.get(attendanceList.size() - 1).getId();
+        }
+        StudentDao studentDao = new StudentDaoImpl();
+        List<Student> studentList = studentDao.getList();
+
         int i = 0;
         for (String[] arr : data){
             if (i == 0){
@@ -131,6 +142,16 @@ public class CalendarDaoImpl extends IOFileDao implements CalendarDao {
                 newList.add(calendar);
                 list.add(calendar);
 
+                for (Student s : studentList){
+                    if (s.getStudentClass().getId().equals(classes.getId())){
+                        Attendance attendance = new Attendance();
+                        attendance.setId(++lastAttendance);
+                        attendance.setStudent(s);
+                        attendance.setCalendar(calendar);
+                        attendanceDao.addOne(attendance);
+                        attendanceList.add(attendance);
+                    }
+                }
 
             }
             i++;
