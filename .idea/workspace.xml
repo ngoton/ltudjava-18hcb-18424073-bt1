@@ -1,37 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="sims:jar" />
+    </artifacts-to-build>
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="58b4aa5b-f3f4-4390-bf83-97490635bd8f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/com/sims/view/StudentTranscriptForm.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/artifacts/sims_jar.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/sims/com/sims/controller/ScreenSwitchController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/sims/com/sims/controller/ScreenSwitchController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/sims/com/sims/dao/AttendanceDaoImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/sims/com/sims/dao/AttendanceDaoImpl.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/sims/com/sims/dao/CalendarDaoImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/sims/com/sims/dao/CalendarDaoImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/sims/com/sims/dao/ClassesDaoImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/sims/com/sims/dao/ClassesDaoImpl.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/sims/com/sims/dao/IOFileDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/sims/com/sims/dao/IOFileDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/sims/com/sims/dao/StudentDaoImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/sims/com/sims/dao/StudentDaoImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/sims/com/sims/dao/SubjectDaoImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/sims/com/sims/dao/SubjectDaoImpl.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/sims/com/sims/dao/TranscriptDaoImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/sims/com/sims/dao/TranscriptDaoImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/sims/com/sims/data/attendance.txt" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/sims/com/sims/data/attendance.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/sims/com/sims/data/calendar.txt" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/sims/com/sims/data/calendar.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/sims/com/sims/data/subject.txt" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/sims/com/sims/data/subject.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/sims/com/sims/data/transcript.txt" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/sims/com/sims/data/transcript.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/sims/com/sims/view/TranscriptForm$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/sims/com/sims/view/TranscriptForm$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/sims/com/sims/view/TranscriptForm$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/sims/com/sims/view/TranscriptForm$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/sims/com/sims/view/TranscriptForm$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/sims/com/sims/view/TranscriptForm$3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/sims/com/sims/view/TranscriptForm.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/sims/com/sims/view/TranscriptForm.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/sims/controller/ScreenSwitchController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/sims/controller/ScreenSwitchController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/sims/controller/TranscriptController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/sims/controller/TranscriptController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/sims/com/sims/dao/UserDaoImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/sims/com/sims/dao/UserDaoImpl.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/sims/dao/AttendanceDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/sims/dao/AttendanceDaoImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/sims/dao/CalendarDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/sims/dao/CalendarDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/sims/dao/CalendarDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/sims/dao/CalendarDaoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/sims/dao/ClassesDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/sims/dao/ClassesDaoImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/sims/dao/IOFileDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/sims/dao/IOFileDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/sims/dao/TranscriptDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/sims/dao/TranscriptDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/sims/dao/StudentDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/sims/dao/StudentDaoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/sims/dao/SubjectDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/sims/dao/SubjectDaoImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/sims/dao/TranscriptDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/sims/dao/TranscriptDaoImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/sims/data/subject.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/sims/data/subject.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/sims/service/CalendarService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/sims/service/CalendarService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/sims/service/CalendarServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/sims/service/CalendarServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/sims/service/TranscriptService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/sims/service/TranscriptService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/sims/service/TranscriptServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/sims/service/TranscriptServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/sims/view/MainForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/sims/view/MainForm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/sims/view/TranscriptForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/sims/view/TranscriptForm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/sims/dao/UserDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/sims/dao/UserDaoImpl.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -44,7 +37,95 @@
     <option name="isMigrated" value="true" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/sims/App.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="68">
+              <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/sims/dao/IOFileDao.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="527">
+              <caret line="34" column="29" lean-forward="true" selection-start-line="34" selection-start-column="29" selection-end-line="34" selection-end-column="29" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/sims/dao/AttendanceDaoImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="85">
+              <caret line="8" column="44" lean-forward="true" selection-start-line="8" selection-start-column="44" selection-end-line="8" selection-end-column="51" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/sims/dao/CalendarDaoImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="85">
+              <caret line="8" column="49" selection-start-line="8" selection-start-column="49" selection-end-line="8" selection-end-column="49" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/sims/dao/ClassesDaoImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="85">
+              <caret line="7" column="46" selection-start-line="7" selection-start-column="46" selection-end-line="7" selection-end-column="46" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/sims/dao/StudentDaoImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="85">
+              <caret line="11" column="48" selection-start-line="11" selection-start-column="48" selection-end-line="11" selection-end-column="48" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/sims/dao/SubjectDaoImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="85">
+              <caret line="8" column="48" selection-start-line="8" selection-start-column="48" selection-end-line="8" selection-end-column="48" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/sims/dao/TranscriptDaoImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="34">
+              <caret line="11" column="51" selection-start-line="11" selection-start-column="51" selection-end-line="11" selection-end-column="51" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/com/sims/dao/UserDaoImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="85">
+              <caret line="9" column="45" selection-start-line="9" selection-start-column="45" selection-end-line="9" selection-end-column="45" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -127,7 +208,6 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/src/com/sims/dao/ClassesDao.java" />
-        <option value="$PROJECT_DIR$/src/com/sims/dao/ClassesDaoImpl.java" />
         <option value="$PROJECT_DIR$/src/com/sims/model/Student.java" />
         <option value="$PROJECT_DIR$/src/com/sims/data/student.txt" />
         <option value="$PROJECT_DIR$/src/com/sims/data/user.txt" />
@@ -138,7 +218,6 @@
         <option value="$PROJECT_DIR$/src/com/sims/service/UserService.java" />
         <option value="$PROJECT_DIR$/src/com/sims/dao/UserDao.java" />
         <option value="$PROJECT_DIR$/src/com/sims/service/UserServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/com/sims/dao/UserDaoImpl.java" />
         <option value="$PROJECT_DIR$/src/com/sims/controller/LoginController.java" />
         <option value="$PROJECT_DIR$/src/com/sims/view/LoginForm.java" />
         <option value="$PROJECT_DIR$/src/com/sims/view/ChangePassForm.java" />
@@ -149,7 +228,6 @@
         <option value="$PROJECT_DIR$/src/com/sims/controller/CalendarController.java" />
         <option value="$PROJECT_DIR$/src/com/sims/model/Calendar.java" />
         <option value="$PROJECT_DIR$/src/com/sims/dao/SubjectDao.java" />
-        <option value="$PROJECT_DIR$/src/com/sims/dao/SubjectDaoImpl.java" />
         <option value="$PROJECT_DIR$/src/com/sims/service/AttendanceService.java" />
         <option value="$PROJECT_DIR$/src/com/sims/service/AttendanceServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/com/sims/controller/AttendanceController.java" />
@@ -158,10 +236,7 @@
         <option value="$PROJECT_DIR$/src/com/sims/view/StudentForm.java" />
         <option value="$PROJECT_DIR$/src/com/sims/view/CalendarForm.java" />
         <option value="$PROJECT_DIR$/src/com/sims/dao/StudentDao.java" />
-        <option value="$PROJECT_DIR$/src/com/sims/dao/StudentDaoImpl.java" />
         <option value="$PROJECT_DIR$/src/com/sims/data/transcript.txt" />
-        <option value="$PROJECT_DIR$/src/com/sims/dao/IOFileDao.java" />
-        <option value="$PROJECT_DIR$/src/com/sims/dao/AttendanceDaoImpl.java" />
         <option value="$PROJECT_DIR$/src/com/sims/controller/ScreenSwitchController.java" />
         <option value="$PROJECT_DIR$/src/com/sims/view/AttendanceForm.java" />
         <option value="$PROJECT_DIR$/src/com/sims/data/subject.txt" />
@@ -169,14 +244,20 @@
         <option value="$PROJECT_DIR$/src/com/sims/service/TranscriptService.java" />
         <option value="$PROJECT_DIR$/src/com/sims/service/TranscriptServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/com/sims/dao/TranscriptDao.java" />
-        <option value="$PROJECT_DIR$/src/com/sims/dao/TranscriptDaoImpl.java" />
         <option value="$PROJECT_DIR$/src/com/sims/view/MainForm.java" />
         <option value="$PROJECT_DIR$/src/com/sims/service/CalendarService.java" />
         <option value="$PROJECT_DIR$/src/com/sims/controller/TranscriptController.java" />
         <option value="$PROJECT_DIR$/src/com/sims/service/CalendarServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/com/sims/dao/CalendarDao.java" />
-        <option value="$PROJECT_DIR$/src/com/sims/dao/CalendarDaoImpl.java" />
         <option value="$PROJECT_DIR$/src/com/sims/view/StudentTranscriptForm.java" />
+        <option value="$PROJECT_DIR$/src/com/sims/dao/IOFileDao.java" />
+        <option value="$PROJECT_DIR$/src/com/sims/dao/AttendanceDaoImpl.java" />
+        <option value="$PROJECT_DIR$/src/com/sims/dao/CalendarDaoImpl.java" />
+        <option value="$PROJECT_DIR$/src/com/sims/dao/ClassesDaoImpl.java" />
+        <option value="$PROJECT_DIR$/src/com/sims/dao/StudentDaoImpl.java" />
+        <option value="$PROJECT_DIR$/src/com/sims/dao/SubjectDaoImpl.java" />
+        <option value="$PROJECT_DIR$/src/com/sims/dao/TranscriptDaoImpl.java" />
+        <option value="$PROJECT_DIR$/src/com/sims/dao/UserDaoImpl.java" />
       </list>
     </option>
   </component>
@@ -192,6 +273,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -214,7 +296,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
     </panes>
   </component>
@@ -226,8 +307,8 @@
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="project.structure.last.edited" value="Project" />
-    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.0" />
     <property name="restartRequiresConfirmation" value="false" />
     <property name="settings.editor.selected.configurable" value="MavenSettings" />
@@ -300,11 +381,15 @@
       <workItem from="1564472118931" duration="4308000" />
       <workItem from="1564499835034" duration="12502000" />
       <workItem from="1564534013602" duration="13127000" />
+      <workItem from="1564553978377" duration="3102000" />
+      <workItem from="1564557675635" duration="1150000" />
+      <workItem from="1564559309356" duration="2328000" />
+      <workItem from="1564562091671" duration="697000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="226290000" />
+    <option name="totallyTimeSpent" value="233567000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
@@ -314,7 +399,7 @@
       <window_info id="Capture Tool" order="2" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info id="Image Layers" order="4" />
-      <window_info active="true" content_ui="combo" id="Project" order="5" visible="true" weight="0.19537275" />
+      <window_info content_ui="combo" id="Project" order="5" visible="true" weight="0.20565553" />
       <window_info id="Structure" order="6" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Docker" order="0" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="1" />
@@ -346,7 +431,7 @@
       <window_info id="Capture Tool" order="2" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info id="Image Layers" order="4" />
-      <window_info content_ui="combo" id="Project" order="5" visible="true" weight="0.19537275" />
+      <window_info active="true" content_ui="combo" id="Project" order="5" visible="true" weight="0.19794345" />
       <window_info id="Structure" order="6" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Docker" order="0" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="1" />
@@ -355,7 +440,7 @@
       <window_info anchor="bottom" id="Event Log" order="4" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="5" />
       <window_info anchor="bottom" id="Find" order="6" weight="0.3293011" />
-      <window_info active="true" anchor="bottom" id="Run" order="7" visible="true" weight="0.28629032" />
+      <window_info anchor="bottom" id="Run" order="7" weight="0.28629032" />
       <window_info anchor="bottom" id="Debug" order="8" weight="0.3951613" />
       <window_info anchor="bottom" id="Cvs" order="9" weight="0.25" />
       <window_info anchor="bottom" id="Messages" order="10" weight="0.32123655" />
@@ -457,44 +542,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/com/sims/dao/UserDao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" column="12" selection-start-line="13" selection-start-column="12" selection-end-line="13" selection-end-column="12" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/sims/model/User.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="325">
-          <caret line="41" selection-start-line="41" selection-end-line="41" />
-          <folding>
-            <element signature="e#263#264#0" expanded="true" />
-            <element signature="e#288#289#0" expanded="true" />
-            <element signature="e#325#326#0" expanded="true" />
-            <element signature="e#353#354#0" expanded="true" />
-            <element signature="e#388#389#0" expanded="true" />
-            <element signature="e#419#420#0" expanded="true" />
-            <element signature="e#467#468#0" expanded="true" />
-            <element signature="e#507#508#0" expanded="true" />
-            <element signature="e#542#543#0" expanded="true" />
-            <element signature="e#573#574#0" expanded="true" />
-            <element signature="e#621#622#0" expanded="true" />
-            <element signature="e#661#662#0" expanded="true" />
-            <element signature="e#692#693#0" expanded="true" />
-            <element signature="e#719#720#0" expanded="true" />
-            <element signature="e#759#760#0" expanded="true" />
-            <element signature="e#826#827#0" expanded="true" />
-            <element signature="e#856#857#0" expanded="true" />
-            <element signature="e#903#904#0" expanded="true" />
-            <element signature="e#941#942#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/sims/service/SubjectService.java" />
     <entry file="file://$PROJECT_DIR$/src/com/sims/dao/SubjectDao.java" />
     <entry file="file://$PROJECT_DIR$/src/com/sims/data/user.txt">
@@ -594,19 +641,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/sims/dao/SubjectDaoImpl.java" />
-    <entry file="file://$PROJECT_DIR$/src/com/sims/dao/ClassesDaoImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="30" selection-start-line="30" selection-end-line="30" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#288#289#0" expanded="true" />
-            <element signature="e#359#360#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/sims/model/Student.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="141">
@@ -643,17 +677,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
           <caret line="10" column="30" selection-start-line="10" selection-start-column="30" selection-end-line="10" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/sims/dao/UserDaoImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="798">
-          <caret line="105" column="5" lean-forward="true" selection-start-line="102" selection-start-column="4" selection-end-line="105" selection-end-column="5" />
-          <folding>
-            <element signature="e#307#308#0" expanded="true" />
-            <element signature="e#377#378#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -730,31 +753,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/sims/dao/IOFileDao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="18" column="21" selection-start-line="18" selection-start-column="21" selection-end-line="18" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/sims/model/Attendance.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
           <caret line="4" selection-start-line="4" selection-end-line="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/sims/dao/StudentDaoImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1255">
-          <caret line="146" column="20" selection-start-line="146" selection-start-column="12" selection-end-line="146" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/sims/dao/AttendanceDaoImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="398">
-          <caret line="82" column="34" selection-start-line="82" selection-start-column="34" selection-end-line="82" selection-end-column="34" />
         </state>
       </provider>
     </entry>
@@ -851,13 +853,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/sims/dao/CalendarDaoImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="449">
-          <caret line="74" column="13" selection-start-line="74" selection-start-column="13" selection-end-line="74" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/sims/dao/CalendarDao.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
@@ -872,20 +867,110 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/sims/App.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/src.zip!/java/io/FileOutputStream.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="239">
+          <caret line="193" column="11" selection-start-line="193" selection-start-column="11" selection-end-line="193" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/sims/dao/IOFileDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="527">
+          <caret line="34" column="29" lean-forward="true" selection-start-line="34" selection-start-column="29" selection-end-line="34" selection-end-column="29" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/sims/dao/AttendanceDaoImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="8" column="44" lean-forward="true" selection-start-line="8" selection-start-column="44" selection-end-line="8" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/sims/dao/CalendarDaoImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="8" column="49" selection-start-line="8" selection-start-column="49" selection-end-line="8" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/sims/dao/ClassesDaoImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="7" column="46" selection-start-line="7" selection-start-column="46" selection-end-line="7" selection-end-column="46" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/sims/dao/StudentDaoImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="11" column="48" selection-start-line="11" selection-start-column="48" selection-end-line="11" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/sims/dao/SubjectDaoImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="8" column="48" selection-start-line="8" selection-start-column="48" selection-end-line="8" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/sims/dao/TranscriptDaoImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="449">
-          <caret line="78" column="13" selection-start-line="78" selection-start-column="13" selection-end-line="78" selection-end-column="13" />
-          <folding>
-            <element signature="e#4867#4868#0" expanded="true" />
-            <element signature="e#4928#4929#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="34">
+          <caret line="11" column="51" selection-start-line="11" selection-start-column="51" selection-end-line="11" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/sims/dao/UserDaoImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="9" column="45" selection-start-line="9" selection-start-column="45" selection-end-line="9" selection-end-column="45" />
         </state>
       </provider>
     </entry>
   </component>
   <component name="masterDetails">
     <states>
+      <state key="ArtifactsStructureConfigurable.UI">
+        <settings>
+          <artifact-editor />
+          <last-edited>sims:jar</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+                <option value="0.5" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="FacetStructureConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
       <state key="GlobalLibrariesConfigurable.UI">
         <settings>
           <splitter-proportions>
@@ -898,6 +983,17 @@
         </settings>
       </state>
       <state key="JdkListConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ModuleStructureConfigurable.UI">
         <settings>
           <splitter-proportions>
             <option name="proportions">

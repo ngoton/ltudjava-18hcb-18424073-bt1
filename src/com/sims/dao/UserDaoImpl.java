@@ -7,11 +7,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserDaoImpl extends IOFileDao implements UserDao {
-    private static String path = "../data/user.txt";
-    private String userFile;
+    private static String userFile = "./data/user.txt";
 
     public UserDaoImpl() {
-        this.userFile = getClass().getResource(path).getFile();
     }
 
     @Override

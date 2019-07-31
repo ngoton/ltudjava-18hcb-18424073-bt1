@@ -6,11 +6,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SubjectDaoImpl extends IOFileDao implements SubjectDao {
-    private static String path = "../data/subject.txt";
-    private String subjectFile;
+    private static String subjectFile = "./data/subject.txt";
 
     public SubjectDaoImpl(){
-        this.subjectFile = getClass().getResource(path).getFile();
+
     }
 
     @Override

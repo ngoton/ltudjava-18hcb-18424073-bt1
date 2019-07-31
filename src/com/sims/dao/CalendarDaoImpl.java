@@ -6,13 +6,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CalendarDaoImpl extends IOFileDao implements CalendarDao {
-    private static String path = "../data/calendar.txt";
-    private String calendarFile;
+    private static String calendarFile = "./data/calendar.txt";
     private ClassesDao classesDao;
     private SubjectDao subjectDao;
 
     public CalendarDaoImpl(){
-        this.calendarFile = getClass().getResource(path).getFile();
         this.classesDao = new ClassesDaoImpl();
         this.subjectDao = new SubjectDaoImpl();
     }

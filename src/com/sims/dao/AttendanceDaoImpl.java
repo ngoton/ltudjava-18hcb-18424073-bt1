@@ -6,13 +6,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AttendanceDaoImpl extends IOFileDao implements AttendanceDao {
-    private static String path = "../data/attendance.txt";
-    private String attendanceFile;
+    private static String attendanceFile = "./data/attendance.txt";
     private CalendarDao calendarDao;
     private StudentDao studentDao;
 
     public AttendanceDaoImpl(){
-        this.attendanceFile = getClass().getResource(path).getFile();
         this.calendarDao = new CalendarDaoImpl();
         this.studentDao = new StudentDaoImpl();
     }

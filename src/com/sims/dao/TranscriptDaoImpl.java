@@ -9,14 +9,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TranscriptDaoImpl extends IOFileDao implements TranscriptDao {
-    private static String path = "../data/transcript.txt";
-    private String transcriptFile;
+    private static String transcriptFile = "./data/transcript.txt";
     private CalendarDao calendarDao;
     private StudentDao studentDao;
     private AttendanceDao attendanceDao;
 
     public TranscriptDaoImpl(){
-        this.transcriptFile = getClass().getResource(path).getFile();
         this.calendarDao = new CalendarDaoImpl();
         this.studentDao = new StudentDaoImpl();
         this.attendanceDao = new AttendanceDaoImpl();

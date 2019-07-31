@@ -5,11 +5,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ClassesDaoImpl extends IOFileDao implements ClassesDao {
-    private static String path = "../data/class.txt";
-    private String classFile;
+    private static String classFile = "./data/class.txt";
 
     public ClassesDaoImpl(){
-        this.classFile = getClass().getResource(path).getFile();
+
     }
 
     @Override

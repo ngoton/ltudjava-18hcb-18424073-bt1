@@ -9,13 +9,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class StudentDaoImpl extends IOFileDao implements StudentDao {
-    private static String path = "../data/student.txt";
-    private String studentFile;
+    private static String studentFile = "./data/student.txt";
     private ClassesDao classesDao;
     private UserDao userDao;
 
     public StudentDaoImpl(){
-        this.studentFile = getClass().getResource(path).getFile();
         this.classesDao = new ClassesDaoImpl();
         this.userDao = new UserDaoImpl();
     }

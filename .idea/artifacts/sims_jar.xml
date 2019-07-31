@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="sims:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/sims_jar</output-path>
+    <root id="archive" name="sims.jar">
+      <element id="module-output" name="sims" />
+    </root>
+  </artifact>
+</component>
