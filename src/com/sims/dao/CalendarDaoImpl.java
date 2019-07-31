@@ -43,6 +43,42 @@ public class CalendarDaoImpl extends IOFileDao implements CalendarDao {
     }
 
     @Override
+    public List<Calendar> getListByStudent(String code){
+        AttendanceDao attendanceDao = new AttendanceDaoImpl();
+        List<Attendance> attendanceList = attendanceDao.getList();
+        List<Calendar> list = new ArrayList<>();
+        List<String[]> data = readFile(calendarFile, "\\|");
+        for (String[] arr : data){
+            Calendar calendar = new Calendar();
+            calendar.setId(Integer.parseInt(arr[0]));
+            calendar.setRoom(arr[3]);
+
+            Classes classes = classesDao.getClassById(Integer.parseInt(arr[1]));
+            if (classes != null){
+                calendar.setClasses(classes);
+            }
+
+            Subject subject = subjectDao.getSubjectById(Integer.parseInt(arr[2]));
+            if (subject != null){
+                calendar.setSubject(subject);
+            }
+
+            boolean check = false;
+            for (Attendance attendance : attendanceList){
+                if (attendance.getCalendar().getId().equals(calendar.getId()) && attendance.getStudent().getCode().equals(code)){
+                    check = true;
+                    break;
+                }
+            }
+            if (check == true) {
+                list.add(calendar);
+            }
+        }
+
+        return list;
+    }
+
+    @Override
     public Calendar getCalendarById(Integer id){
         List<Calendar> calendars = this.getList();
         Calendar calendar = null;
@@ -72,15 +108,18 @@ public class CalendarDaoImpl extends IOFileDao implements CalendarDao {
     public boolean save(List<Calendar> calendars){
         StudentDao studentDao = new StudentDaoImpl();
         AttendanceDao attendanceDao = new AttendanceDaoImpl();
+        TranscriptDao transcriptDao = new TranscriptDaoImpl();
         List<Student> studentList = studentDao.getList();
         List<Attendance> attendances = attendanceDao.getList();
         List<Attendance> attendanceList = new ArrayList<>();
+        List<Transcript> transcriptList = new ArrayList<>();
         Integer lastId = 0;
         if (attendances.size() > 0) {
             lastId = attendances.get(attendances.size() - 1).getId();
         }
         for (Calendar c : calendars){
             List<Attendance> list = attendanceDao.getAttendanceByCalendar(c);
+            List<Transcript> listTrans = transcriptDao.getTranscriptByCalendar(c);
             if (list == null || list.size() == 0){
                 for (Student s : studentList) {
                     if (s.getStudentClass().getId().equals(c.getClasses().getId())) {
@@ -97,20 +136,15 @@ public class CalendarDaoImpl extends IOFileDao implements CalendarDao {
                 for (Attendance attendance : list) {
                     attendanceList.add(attendance);
                 }
-            }
-
-        }
-
-        List<Attendance> newList = new ArrayList<>();
-
-        for (Attendance u : attendanceList) {
-            for (Calendar s : calendars) {
-                if(u.getCalendar().getId().equals(s.getId())){
-                    newList.add(u);
+                for (Transcript transcript : listTrans) {
+                    transcriptList.add(transcript);
                 }
             }
+
         }
-        attendanceDao.updateAll(newList);
+
+        attendanceDao.updateAll(attendanceList);
+        transcriptDao.save(transcriptList);
 
         return writeFile(calendars, calendarFile, false);
     }
@@ -119,6 +153,8 @@ public class CalendarDaoImpl extends IOFileDao implements CalendarDao {
     public boolean deleteAll(){
         AttendanceDao attendanceDao = new AttendanceDaoImpl();
         attendanceDao.deleteAll();
+        TranscriptDao transcriptDao = new TranscriptDaoImpl();
+        transcriptDao.deleteAll();
         return writeFile(null, calendarFile, false);
     }
 

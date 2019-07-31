@@ -7,6 +7,7 @@ import java.util.List;
 
 public interface TranscriptDao {
     List<Transcript> getList();
+    List<Transcript> getListByStudent(String code);
     Transcript getTranscriptById(Integer id);
     List<Transcript> getTranscriptByCalendar(Calendar calendar);
     boolean save(List<Transcript> transcripts);

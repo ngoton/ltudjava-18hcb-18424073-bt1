@@ -79,6 +79,8 @@ public class AttendanceDaoImpl extends IOFileDao implements AttendanceDao {
 
     @Override
     public boolean deleteAll(){
+        TranscriptDao transcriptDao = new TranscriptDaoImpl();
+        transcriptDao.deleteAll();
         return writeFile(null, attendanceFile, false);
     }
 

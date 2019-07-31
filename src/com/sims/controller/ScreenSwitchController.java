@@ -3,6 +3,7 @@ package com.sims.controller;
 import com.sims.bean.MenuBean;
 import com.sims.view.AttendanceForm;
 import com.sims.view.LoginForm;
+import com.sims.view.TranscriptForm;
 
 import javax.swing.*;
 import java.awt.*;
@@ -42,6 +43,10 @@ public class ScreenSwitchController {
                     if (item.getName().equals("attendance")){
                         AttendanceForm attendanceForm = new AttendanceForm();
                         p = attendanceForm;
+                    }
+                    else if (item.getName().equals("transcript")){
+                        TranscriptForm transcriptForm = new TranscriptForm();
+                        p = transcriptForm;
                     }
                     panel.add(toolBar, BorderLayout.PAGE_START);
                     panel.add(p, BorderLayout.CENTER);

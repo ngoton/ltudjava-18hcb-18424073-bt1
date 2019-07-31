@@ -6,13 +6,13 @@ import com.sims.view.TranscriptForm;
 
 import java.util.List;
 
-public class TranscriptController {
-    private TranscriptForm transcriptForm;
+public class TranscriptController<T> {
+    private T transcriptForm;
     private TranscriptService transcriptService;
     private CalendarService calendarService;
     private StudentService studentService;
 
-    public TranscriptController(TranscriptForm transcriptForm){
+    public TranscriptController(T transcriptForm){
         this.transcriptForm = transcriptForm;
         this.transcriptService = new TranscriptServiceImpl();
         this.calendarService = new CalendarServiceImpl();
@@ -23,8 +23,16 @@ public class TranscriptController {
         return transcriptService.getList();
     }
 
+    public List<Transcript> getListByStudent(String code){
+        return transcriptService.getListByStudent(code);
+    }
+
     public List<Calendar> getCalendarList(){
         return calendarService.getList();
+    }
+
+    public List<Calendar> getCalendarListByStudent(String code){
+        return calendarService.getListByStudent(code);
     }
 
     public List<Student> getStudentList(){

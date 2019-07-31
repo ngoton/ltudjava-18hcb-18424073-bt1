@@ -6,6 +6,7 @@ import java.util.List;
 
 public interface CalendarDao {
     List<Calendar> getList();
+    List<Calendar> getListByStudent(String code);
     Calendar getCalendarById(Integer id);
     Calendar getCalendarByName(String name);
     boolean save(List<Calendar> calendars);

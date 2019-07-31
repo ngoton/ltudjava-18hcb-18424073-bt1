@@ -12,10 +12,11 @@ public class IOFileDao<T> {
         try(FileReader fr = new FileReader(file)){
             try(BufferedReader br = new BufferedReader(fr)) {
                 while((thisLine = br.readLine()) != null){
-                    thisLine = thisLine.replace("\uFEFF", "");
-                    T arr = (T)thisLine.split(regex);
-
-                    list.add(arr);
+                    if(!thisLine.isEmpty()){
+                        thisLine = thisLine.replace("\uFEFF", "");
+                        T arr = (T)thisLine.split(regex);
+                        list.add(arr);
+                    }
                 }
                 br.close();
                 fr.close();

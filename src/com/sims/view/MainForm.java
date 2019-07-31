@@ -20,6 +20,7 @@ public class MainForm extends JFrame {
     private AttendanceForm attendancePanel = new AttendanceForm();
     private TranscriptForm transcriptPanel = new TranscriptForm();
     private ChangePassForm changePassPanel;
+    private StudentTranscriptForm transcriptForm;
 
     public MainForm(boolean isAdmin, User user){
         super("QUẢN LÝ SINH VIÊN");
@@ -31,6 +32,7 @@ public class MainForm extends JFrame {
         setPreferredSize(new Dimension(width, height));
         this.userLogined = user;
         this.changePassPanel = new ChangePassForm(user);
+        this.transcriptForm = new StudentTranscriptForm(user);
         addComponentsToPane(isAdmin);
         pack();
         clickListener = new ClickListener();
@@ -129,15 +131,13 @@ public class MainForm extends JFrame {
     private void setUserPanel(Container contentPane) {
         BorderLayout layout = new BorderLayout();
 
-        JButton calendarButton = new JButton("Thời khóa biểu");
-        JButton transcriptButton = new JButton("Điểm thi");
+        JButton transcriptButton = new JButton("Bảng điểm");
         JButton changePassButton = new JButton("Đổi mật khẩu");
 
         String lg = "[ " + userLogined.getUsername() + " ] Đăng xuất";
         JButton loginButton = new JButton(lg);
 
         JToolBar toolBar = new JToolBar();
-        toolBar.add(calendarButton);
         toolBar.add(transcriptButton);
         toolBar.add(changePassButton);
         toolBar.add(Box.createHorizontalGlue());
@@ -148,12 +148,12 @@ public class MainForm extends JFrame {
         mainPanel.add(toolBar, BorderLayout.PAGE_START);
 
         List<MenuBean> menuList = new ArrayList<>();
-        //menuList.add(new MenuBean(calendarPanel, studentButton, "student"));
+        menuList.add(new MenuBean(transcriptForm, transcriptButton, "stTranscript"));
         menuList.add(new MenuBean(changePassPanel, changePassButton, "changepass"));
         menuList.add(new MenuBean(null, loginButton, "login"));
 
         ScreenSwitchController controller = new ScreenSwitchController(this, mainPanel, toolBar);
-        controller.setFirstPanel(changePassPanel, changePassButton);
+        controller.setFirstPanel(transcriptForm, transcriptButton);
         controller.setEvent(menuList);
 
         contentPane.add(mainPanel);

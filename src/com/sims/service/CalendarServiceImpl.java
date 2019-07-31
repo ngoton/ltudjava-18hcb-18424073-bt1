@@ -19,6 +19,11 @@ public class CalendarServiceImpl implements CalendarService {
     }
 
     @Override
+    public List<Calendar> getListByStudent(String code){
+        return calendarDao.getListByStudent(code);
+    }
+
+    @Override
     public boolean save(List<Calendar> calendars){
         return calendarDao.save(calendars);
     }

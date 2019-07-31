@@ -1,2 +1,2 @@
-1|CTT001|Lập trình ứng dụng Java
-2|CTT002|Mạng máy tính
+1|CT001|Lập trình ứng dụng Java
+2|CT002|Mạng máy tính

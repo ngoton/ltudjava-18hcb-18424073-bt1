@@ -19,6 +19,11 @@ public class TranscriptServiceImpl implements TranscriptService {
     }
 
     @Override
+    public List<Transcript> getListByStudent(String code){
+        return transcriptDao.getListByStudent(code);
+    }
+
+    @Override
     public boolean save(List<Transcript> transcripts){
         return transcriptDao.save(transcripts);
     }

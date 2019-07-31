@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TranscriptForm extends JPanel {
+    private static Float basicMark = 5.0f;
     private TranscriptController controller;
     private ClickListener clickListener;
     private List<Transcript> list;
@@ -54,6 +55,11 @@ public class TranscriptForm extends JPanel {
     private JLabel fnMarkLabel;
     private JLabel otMarkLabel;
     private JLabel markLabel;
+    private JComboBox resultBox;
+    private JLabel passName;
+    private JLabel passCount;
+    private JLabel failName;
+    private JLabel failCount;
 
     private TableRowSorter<TableModel> rowSorter;
     private Transcript selectedTranscript;
@@ -106,12 +112,12 @@ public class TranscriptForm extends JPanel {
 
     private void showDataTable() {
         model.setColumnIdentifiers(new Object[]{
-                "STT", "MSSV", "Họ tên", "Điểm GK", "Điểm CK", "Điểm khác", "Điểm tổng", "Lớp"
+                "STT", "MSSV", "Họ tên", "Điểm GK", "Điểm CK", "Điểm khác", "Điểm tổng", "Lớp", "KQ"
         });
         int i = 1;
         for (Transcript transcript : list) {
             model.addRow(new Object[]{
-                    i++, transcript.getStudent().getCode(), transcript.getStudent().getName(), transcript.getMiddleMark(), transcript.getFinalMark(), transcript.getOtherMark(), transcript.getMark(), transcript.getCalendar().getClasses().getName()+"-"+transcript.getCalendar().getSubject().getCode(),
+                    i++, transcript.getStudent().getCode(), transcript.getStudent().getName(), transcript.getMiddleMark(), transcript.getFinalMark(), transcript.getOtherMark(), transcript.getMark(), transcript.getCalendar().getClasses().getName()+"-"+transcript.getCalendar().getSubject().getCode(), (transcript.getMark()>=basicMark?"Đậu":"Rớt")
             });
         }
 
@@ -122,7 +128,18 @@ public class TranscriptForm extends JPanel {
         centerRenderer.setHorizontalAlignment(JLabel.CENTER);
         transcriptTable.getColumnModel().getColumn(0).setCellRenderer(centerRenderer);
         transcriptTable.getColumnModel().getColumn(0).setPreferredWidth(20);
+        transcriptTable.getColumnModel().getColumn(8).setPreferredWidth(20);
         transcriptTable.addMouseListener(getDataRow());
+
+        DefaultTableCellRenderer rightRenderer = new DefaultTableCellRenderer();
+        rightRenderer.setHorizontalAlignment(JLabel.RIGHT);
+        transcriptTable.getColumnModel().getColumn(3).setCellRenderer(rightRenderer);
+        transcriptTable.getColumnModel().getColumn(4).setCellRenderer(rightRenderer);
+        transcriptTable.getColumnModel().getColumn(5).setCellRenderer(rightRenderer);
+        transcriptTable.getColumnModel().getColumn(6).setCellRenderer(rightRenderer);
+
+        this.statistic();
+
     }
 
     private MouseAdapter getDataRow() {
@@ -178,6 +195,15 @@ public class TranscriptForm extends JPanel {
 
     private void filter() {
         String text = calendarBox.getSelectedItem().toString();
+        if (text.equals("Tất cả")) {
+            rowSorter.setRowFilter(null);
+        } else {
+            rowSorter.setRowFilter(RowFilter.regexFilter("(?i)" + text));
+        }
+    }
+
+    private void filterResult() {
+        String text = resultBox.getSelectedItem().toString();
         if (text.equals("Tất cả")) {
             rowSorter.setRowFilter(null);
         } else {
@@ -268,13 +294,14 @@ public class TranscriptForm extends JPanel {
                     model.setValueAt(otherMark, selectedRowIndex, 5);
                     model.setValueAt(mark, selectedRowIndex, 6);
                     model.setValueAt(calendarSelected, selectedRowIndex, 7);
+                    model.setValueAt((Float.parseFloat(mark)>=basicMark?"Đậu":"Rớt"), selectedRowIndex, 8);
                 } else {
                     Integer i = 0;
                     if (model.getRowCount() > 0) {
                         i = Integer.parseInt(model.getValueAt(model.getRowCount() - 1, 0).toString());
                     }
                     model.addRow(new Object[]{
-                            ++i, studentSelected, nameSelected, middleMark, finalMark, otherMark, mark, calendarSelected
+                            ++i, studentSelected, nameSelected, middleMark, finalMark, otherMark, mark, calendarSelected, (Float.parseFloat(mark)>=basicMark?"Đậu":"Rớt")
                     });
                 }
 
@@ -352,7 +379,31 @@ public class TranscriptForm extends JPanel {
     private void refresh() {
         selectedTranscript = null;
         selectedRowIndex = null;
+        mdMarkField.setText("");
+        fnMarkField.setText("");
+        otMarkField.setText("");
+        markField.setText("");
         transcriptTable.getSelectionModel().clearSelection();
+        this.statistic();
+    }
+
+    private void statistic(){
+        int pass = 0;
+        int fail = 0;
+        for (Transcript transcript : list) {
+            if (transcript.getMark()>=basicMark){
+                pass++;
+            }
+            else {
+                fail++;
+            }
+        }
+        if (pass > 0 || fail > 0){
+            float passPer = (float)pass/(pass+fail)*100;
+            float failPer = (float)fail/(pass+fail)*100;
+            passCount.setText(pass+" ("+Math.round(passPer)+"%)");
+            failCount.setText(fail+" ("+Math.round(failPer)+"%)");
+        }
     }
 
     private void initComponents() {
@@ -387,6 +438,8 @@ public class TranscriptForm extends JPanel {
         resetButton = new JButton("Nhập lại");
         resetButton.addActionListener(e -> refresh());
 
+        resultBox = new JComboBox(new Object[]{"Tất cả", "Đậu", "Rớt"});
+        resultBox.addActionListener(e->filterResult());
 
         studentField = new JComboBox(new DefaultComboBoxModel(
 
@@ -414,7 +467,7 @@ public class TranscriptForm extends JPanel {
 
                 },
                 new String[]{
-                        "STT", "MSSV", "Họ tên", "Điểm GK", "Điểm CK", "Điểm khác", "Điểm tổng", "Lớp"
+                        "STT", "MSSV", "Họ tên", "Điểm GK", "Điểm CK", "Điểm khác", "Điểm tổng", "Lớp", "KQ"
                 }
         ) {
             @Override
@@ -430,6 +483,15 @@ public class TranscriptForm extends JPanel {
 
         removeButton = new JButton("Xóa tất cả");
         removeButton.addActionListener(e -> clearAll());
+
+        passName = new JLabel("Đậu: ");
+        passCount = new JLabel();
+        passCount.setForeground(new Color(52326));
+        passCount.setFont(new Font("Arial", 1, 16));
+        failName = new JLabel("Rớt: ");
+        failCount = new JLabel();
+        failCount.setForeground(Color.RED);
+        failCount.setFont(new Font("Arial", 1, 16));
 
         GroupLayout layout = new GroupLayout(panel);
         settingLayout(layout);
@@ -478,6 +540,7 @@ public class TranscriptForm extends JPanel {
                                         .addComponent(titleLabel)
                                         .addGroup(layout.createSequentialGroup()
                                                 .addComponent(calendarBox, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(resultBox, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
                                                 .addGap(300, 300, 300)
                                                 .addComponent(searchField)
                                         )
@@ -485,8 +548,15 @@ public class TranscriptForm extends JPanel {
                                         .addGroup(layout.createSequentialGroup()
                                                 .addComponent(deleteButton)
                                                 .addComponent(removeButton)
+                                                .addGap(300, 300, 300)
+                                                .addComponent(passName)
+                                                .addComponent(passCount)
+                                                .addGap(50, 50, 50)
+                                                .addComponent(failName)
+                                                .addComponent(failCount)
                                         )
                                 )
+
                                 .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -534,6 +604,7 @@ public class TranscriptForm extends JPanel {
                                                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                                                         .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                                                                 .addComponent(calendarBox)
+                                                                .addComponent(resultBox)
                                                                 .addComponent(searchField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 
                                                         )
@@ -542,7 +613,12 @@ public class TranscriptForm extends JPanel {
                                                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                                                         .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                                                                 .addComponent(deleteButton)
-                                                                .addComponent(removeButton))
+                                                                .addComponent(removeButton)
+                                                                .addComponent(passName)
+                                                                .addComponent(passCount)
+                                                                .addGap(50, 50, 50)
+                                                                .addComponent(failName)
+                                                                .addComponent(failCount))
                                                 )
                                                 .addContainerGap(54, Short.MAX_VALUE))))
         );
