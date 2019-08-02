@@ -2,22 +2,25 @@ package com.sims.dao;
 
 import com.sims.model.Student;
 import com.sims.model.User;
+import com.sims.util.MD5Encrypt;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class UserDaoImpl extends IOFileDao implements UserDao {
-    private static String userFile = "./data/user.txt";
+    private static String userFile = "data/user.txt";
 
     public UserDaoImpl() {
     }
 
     @Override
     public User login(String username, String password){
+        String pass = MD5Encrypt.convertHashToString(password);
+
         List<User> users = getList();
         User user = null;
         for (User item : users){
-            if (username.equals(item.getUsername()) && password.equals(item.getPassword())){
+            if (username.equals(item.getUsername()) && pass.equals(item.getPassword())){
                 user = item;
                 break;
             }
@@ -122,7 +125,7 @@ public class UserDaoImpl extends IOFileDao implements UserDao {
         List<User> userList = new ArrayList<>();
         for (User u : users){
             if (u.getId().equals(user.getId())){
-                u.setPassword(user.getPassword());
+                u.setPassword(MD5Encrypt.convertHashToString(user.getPassword()));
             }
             userList.add(u);
         }

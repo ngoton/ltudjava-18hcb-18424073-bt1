@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SubjectDaoImpl extends IOFileDao implements SubjectDao {
-    private static String subjectFile = "./data/subject.txt";
+    private static String subjectFile = "data/subject.txt";
 
     public SubjectDaoImpl(){
 

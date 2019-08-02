@@ -3,6 +3,7 @@ package com.sims.view;
 import com.sims.controller.LoginController;
 import com.sims.model.User;
 import com.sims.util.ClickListener;
+import com.sims.util.MD5Encrypt;
 
 import javax.swing.*;
 import java.awt.*;
@@ -66,7 +67,8 @@ public class ChangePassForm extends JPanel {
     }
 
     private void save(){
-        String pass = new String(passwordField.getPassword());
+        String password = new String(passwordField.getPassword());
+        String pass = MD5Encrypt.convertHashToString(password);
         String newPass = new String(newPassField.getPassword());
 
         if (pass.isEmpty()){

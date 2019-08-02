@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TranscriptDaoImpl extends IOFileDao implements TranscriptDao {
-    private static String transcriptFile = "./data/transcript.txt";
+    private static String transcriptFile = "data/transcript.txt";
     private CalendarDao calendarDao;
     private StudentDao studentDao;
     private AttendanceDao attendanceDao;

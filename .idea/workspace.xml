@@ -7,8 +7,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="58b4aa5b-f3f4-4390-bf83-97490635bd8f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/artifacts/sims_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/sims/util/MD5Encrypt.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/sims_jar/sims.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/sims_jar/sims.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/sims/com/sims/dao/AttendanceDaoImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/sims/com/sims/dao/AttendanceDaoImpl.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/sims/com/sims/dao/CalendarDaoImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/sims/com/sims/dao/CalendarDaoImpl.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/sims/com/sims/dao/ClassesDaoImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/sims/com/sims/dao/ClassesDaoImpl.class" afterDir="false" />
@@ -17,6 +18,15 @@
       <change beforePath="$PROJECT_DIR$/out/production/sims/com/sims/dao/SubjectDaoImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/sims/com/sims/dao/SubjectDaoImpl.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/sims/com/sims/dao/TranscriptDaoImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/sims/com/sims/dao/TranscriptDaoImpl.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/sims/com/sims/dao/UserDaoImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/sims/com/sims/dao/UserDaoImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/sims/com/sims/data/attendance.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/sims/com/sims/data/calendar.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/sims/com/sims/data/class.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/sims/com/sims/data/student.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/sims/com/sims/data/subject.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/sims/com/sims/data/transcript.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/sims/com/sims/data/user.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/sims/com/sims/view/ChangePassForm$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/sims/com/sims/view/ChangePassForm$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/sims/com/sims/view/ChangePassForm.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/sims/com/sims/view/ChangePassForm.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/sims/dao/AttendanceDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/sims/dao/AttendanceDaoImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/sims/dao/CalendarDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/sims/dao/CalendarDaoImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/sims/dao/ClassesDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/sims/dao/ClassesDaoImpl.java" afterDir="false" />
@@ -25,6 +35,14 @@
       <change beforePath="$PROJECT_DIR$/src/com/sims/dao/SubjectDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/sims/dao/SubjectDaoImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/sims/dao/TranscriptDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/sims/dao/TranscriptDaoImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/sims/dao/UserDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/sims/dao/UserDaoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/sims/data/attendance.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/sims/data/calendar.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/sims/data/class.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/sims/data/student.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/sims/data/subject.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/sims/data/transcript.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/sims/data/user.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/sims/view/ChangePassForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/sims/view/ChangePassForm.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -37,95 +55,7 @@
     <option name="isMigrated" value="true" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/sims/App.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/sims/dao/IOFileDao.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="527">
-              <caret line="34" column="29" lean-forward="true" selection-start-line="34" selection-start-column="29" selection-end-line="34" selection-end-column="29" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/sims/dao/AttendanceDaoImpl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="8" column="44" lean-forward="true" selection-start-line="8" selection-start-column="44" selection-end-line="8" selection-end-column="51" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/sims/dao/CalendarDaoImpl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="8" column="49" selection-start-line="8" selection-start-column="49" selection-end-line="8" selection-end-column="49" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/sims/dao/ClassesDaoImpl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="7" column="46" selection-start-line="7" selection-start-column="46" selection-end-line="7" selection-end-column="46" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/sims/dao/StudentDaoImpl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="11" column="48" selection-start-line="11" selection-start-column="48" selection-end-line="11" selection-end-column="48" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/sims/dao/SubjectDaoImpl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="8" column="48" selection-start-line="8" selection-start-column="48" selection-end-line="8" selection-end-column="48" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/sims/dao/TranscriptDaoImpl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="11" column="51" selection-start-line="11" selection-start-column="51" selection-end-line="11" selection-end-column="51" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/com/sims/dao/UserDaoImpl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="9" column="45" selection-start-line="9" selection-start-column="45" selection-end-line="9" selection-end-column="45" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -137,7 +67,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>updateData</find>
       <find>JOption</find>
       <find>list</find>
       <find>studentDao</find>
@@ -167,6 +96,7 @@
       <find>addB</find>
       <find>subjectCode</find>
       <find>markField</find>
+      <find>setPassword</find>
     </findStrings>
     <replaceStrings>
       <replace>nameLabel</replace>
@@ -207,9 +137,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/com/sims/dao/ClassesDao.java" />
-        <option value="$PROJECT_DIR$/src/com/sims/model/Student.java" />
-        <option value="$PROJECT_DIR$/src/com/sims/data/student.txt" />
         <option value="$PROJECT_DIR$/src/com/sims/data/user.txt" />
         <option value="$PROJECT_DIR$/src/com/sims/model/Classes.java" />
         <option value="$PROJECT_DIR$/src/com/sims/model/Subject.java" />
@@ -220,7 +147,6 @@
         <option value="$PROJECT_DIR$/src/com/sims/service/UserServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/com/sims/controller/LoginController.java" />
         <option value="$PROJECT_DIR$/src/com/sims/view/LoginForm.java" />
-        <option value="$PROJECT_DIR$/src/com/sims/view/ChangePassForm.java" />
         <option value="$PROJECT_DIR$/src/com/sims/model/Attendance.java" />
         <option value="$PROJECT_DIR$/src/com/sims/model/Transcript.java" />
         <option value="$PROJECT_DIR$/src/com/sims/service/SubjectService.java" />
@@ -250,14 +176,18 @@
         <option value="$PROJECT_DIR$/src/com/sims/service/CalendarServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/com/sims/dao/CalendarDao.java" />
         <option value="$PROJECT_DIR$/src/com/sims/view/StudentTranscriptForm.java" />
-        <option value="$PROJECT_DIR$/src/com/sims/dao/IOFileDao.java" />
         <option value="$PROJECT_DIR$/src/com/sims/dao/AttendanceDaoImpl.java" />
         <option value="$PROJECT_DIR$/src/com/sims/dao/CalendarDaoImpl.java" />
         <option value="$PROJECT_DIR$/src/com/sims/dao/ClassesDaoImpl.java" />
-        <option value="$PROJECT_DIR$/src/com/sims/dao/StudentDaoImpl.java" />
         <option value="$PROJECT_DIR$/src/com/sims/dao/SubjectDaoImpl.java" />
         <option value="$PROJECT_DIR$/src/com/sims/dao/TranscriptDaoImpl.java" />
+        <option value="$PROJECT_DIR$/src/com/sims/util/UpdatableBCrypt.java" />
+        <option value="$PROJECT_DIR$/src/com/sims/util/MD5Encrypt.java" />
         <option value="$PROJECT_DIR$/src/com/sims/dao/UserDaoImpl.java" />
+        <option value="$PROJECT_DIR$/src/com/sims/dao/IOFileDao.java" />
+        <option value="$PROJECT_DIR$/src/com/sims/dao/StudentDaoImpl.java" />
+        <option value="$PROJECT_DIR$/src/com/sims/view/ChangePassForm.java" />
+        <option value="$PROJECT_DIR$/data/user.txt" />
       </list>
     </option>
   </component>
@@ -273,7 +203,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -281,22 +211,11 @@
               <item name="sims" type="b2602c69:ProjectViewProjectNode" />
               <item name="sims" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="sims" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sims" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="sims" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sims" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="sims" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -319,6 +238,9 @@
       <recent name="com.sims.dao" />
       <recent name="com.sims.service" />
       <recent name="com.sims.controller" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\desktopproject\sims" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -385,11 +307,13 @@
       <workItem from="1564557675635" duration="1150000" />
       <workItem from="1564559309356" duration="2328000" />
       <workItem from="1564562091671" duration="697000" />
+      <workItem from="1564706899729" duration="3775000" />
+      <workItem from="1564716285572" duration="4120000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="233567000" />
+    <option name="totallyTimeSpent" value="241462000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
@@ -399,7 +323,7 @@
       <window_info id="Capture Tool" order="2" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info id="Image Layers" order="4" />
-      <window_info content_ui="combo" id="Project" order="5" visible="true" weight="0.20565553" />
+      <window_info active="true" content_ui="combo" id="Project" order="5" visible="true" weight="0.21079692" />
       <window_info id="Structure" order="6" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Docker" order="0" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="1" />
@@ -462,16 +386,6 @@
     <option name="version" value="1" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/com/sims/view/ChangePassForm.java</url>
-          <line>85</line>
-          <properties />
-          <option name="timeStamp" value="27" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
     <watches-manager>
       <configuration name="Application">
         <watch expression="list" language="JAVA" />
@@ -542,30 +456,7 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/com/sims/service/SubjectService.java" />
-    <entry file="file://$PROJECT_DIR$/src/com/sims/dao/SubjectDao.java" />
-    <entry file="file://$PROJECT_DIR$/src/com/sims/data/user.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" selection-start-line="1" selection-end-line="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/sims/data/student.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" selection-start-line="1" selection-end-line="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/sims/data/class.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" lean-forward="true" selection-start-line="1" selection-end-line="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/sims/data/calendar.txt" />
+    <entry file="file://$PROJECT_DIR$/data/calendar.txt" />
     <entry file="file://$PROJECT_DIR$/src/com/sims/service/SubjectServiceImpl.java" />
     <entry file="file://$PROJECT_DIR$/src/com/sims/service/ClassesServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -680,7 +571,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/sims/data/attendance.txt">
+    <entry file="file://$PROJECT_DIR$/data/attendance.txt">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/sims/model/Calendar.java">
@@ -730,7 +621,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/sims/data/transcript.txt" />
+    <entry file="file://$PROJECT_DIR$/data/transcript.txt" />
     <entry file="file://$PROJECT_DIR$/src/com/sims/model/Transcript.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="529">
@@ -743,13 +634,6 @@
             <element signature="e#1303#1304#0" expanded="true" />
             <element signature="e#1335#1336#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/sims/view/StudentForm.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="167">
-          <caret line="177" column="8" selection-start-line="177" selection-start-column="8" selection-end-line="177" selection-end-column="51" />
         </state>
       </provider>
     </entry>
@@ -777,14 +661,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/sims/view/AttendanceForm.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="320">
-          <caret line="63" column="5" lean-forward="true" selection-start-line="63" selection-start-column="5" selection-end-line="63" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/sims/data/subject.txt">
+    <entry file="file://$PROJECT_DIR$/data/subject.txt">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/sims/view/TranscriptForm.java">
@@ -867,13 +744,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/sims/App.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/src.zip!/java/io/FileOutputStream.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="239">
@@ -881,20 +751,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/sims/dao/IOFileDao.java">
+    <entry file="file://$PROJECT_DIR$/src/com/sims/App.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="527">
-          <caret line="34" column="29" lean-forward="true" selection-start-line="34" selection-start-column="29" selection-end-line="34" selection-end-column="29" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/sims/dao/AttendanceDaoImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="8" column="44" lean-forward="true" selection-start-line="8" selection-start-column="44" selection-end-line="8" selection-end-column="51" />
+        <state relative-caret-position="68">
+          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
         </state>
       </provider>
     </entry>
@@ -915,10 +775,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/sims/dao/StudentDaoImpl.java">
+    <entry file="file://$PROJECT_DIR$/src/com/sims/dao/AttendanceDaoImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="11" column="48" selection-start-line="11" selection-start-column="48" selection-end-line="11" selection-end-column="48" />
+        <state relative-caret-position="-629">
+          <caret line="8" column="44" selection-start-line="8" selection-start-column="44" selection-end-line="8" selection-end-column="51" />
         </state>
       </provider>
     </entry>
@@ -936,10 +796,88 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/sims/model/User.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/src.zip!/javax/swing/table/DefaultTableModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="188">
+          <caret line="173" column="11" selection-start-line="173" selection-start-column="11" selection-end-line="173" selection-end-column="11" />
+          <folding>
+            <element signature="e#5569#5570#0" expanded="true" />
+            <element signature="e#5617#5618#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/sims/view/StudentForm.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-3447">
+          <caret line="177" column="8" selection-start-line="177" selection-start-column="8" selection-end-line="177" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/sims/view/AttendanceForm.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="335">
+          <caret line="402" column="11" lean-forward="true" selection-start-line="402" selection-start-column="11" selection-end-line="402" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/sims/dao/UserDaoImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="9" column="45" selection-start-line="9" selection-start-column="45" selection-end-line="9" selection-end-column="45" />
+        <state relative-caret-position="629">
+          <caret line="127" column="81" selection-start-line="127" selection-start-column="81" selection-end-line="127" selection-end-column="81" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2897#2898#0" expanded="true" />
+            <element signature="e#2953#2954#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/sims/dao/IOFileDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="22" column="78" selection-start-line="22" selection-start-column="78" selection-end-line="22" selection-end-column="78" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/sims/dao/StudentDaoImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2243">
+          <caret line="200" column="16" lean-forward="true" selection-start-line="200" selection-start-column="16" selection-end-line="200" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/sims/view/ChangePassForm.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="118">
+          <caret line="70" column="63" selection-start-line="70" selection-start-column="63" selection-end-line="70" selection-end-column="63" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/sims/util/MD5Encrypt.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="18" column="20" lean-forward="true" selection-start-line="18" selection-start-column="20" selection-end-line="18" selection-end-column="20" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/user.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" selection-start-line="1" selection-end-line="1" />
         </state>
       </provider>
     </entry>

@@ -3,13 +3,13 @@ package com.sims.dao;
 import com.sims.model.Classes;
 import com.sims.model.Student;
 import com.sims.model.User;
+import com.sims.util.MD5Encrypt;
 
-import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class StudentDaoImpl extends IOFileDao implements StudentDao {
-    private static String studentFile = "./data/student.txt";
+    private static String studentFile = "data/student.txt";
     private ClassesDao classesDao;
     private UserDao userDao;
 
@@ -82,7 +82,7 @@ public class StudentDaoImpl extends IOFileDao implements StudentDao {
                 user = new User();
                 user.setId(++lastId);
                 user.setUsername(s.getCode());
-                user.setPassword(s.getCode());
+                user.setPassword(MD5Encrypt.convertHashToString(s.getCode()));
                 user.setRole("USER");
                 user.setStudent(s);
                 userDao.addOne(user);
@@ -191,7 +191,7 @@ public class StudentDaoImpl extends IOFileDao implements StudentDao {
                     User user = new User();
                     user.setId(++lastUser);
                     user.setUsername(code);
-                    user.setPassword(code);
+                    user.setPassword(MD5Encrypt.convertHashToString(code));
                     user.setRole("USER");
                     user.setStudent(student);
                     userDao.addOne(user);

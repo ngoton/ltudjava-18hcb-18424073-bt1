@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CalendarDaoImpl extends IOFileDao implements CalendarDao {
-    private static String calendarFile = "./data/calendar.txt";
+    private static String calendarFile = "data/calendar.txt";
     private ClassesDao classesDao;
     private SubjectDao subjectDao;
 

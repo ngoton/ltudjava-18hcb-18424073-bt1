@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AttendanceDaoImpl extends IOFileDao implements AttendanceDao {
-    private static String attendanceFile = "./data/attendance.txt";
+    private static String attendanceFile = "data/attendance.txt";
     private CalendarDao calendarDao;
     private StudentDao studentDao;
 

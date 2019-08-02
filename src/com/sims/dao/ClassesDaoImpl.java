@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ClassesDaoImpl extends IOFileDao implements ClassesDao {
-    private static String classFile = "./data/class.txt";
+    private static String classFile = "data/class.txt";
 
     public ClassesDaoImpl(){
 
